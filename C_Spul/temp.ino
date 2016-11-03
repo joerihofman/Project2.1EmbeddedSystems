@@ -5,7 +5,7 @@ void setup() {
 void loop() {
   int var = Serial.read();
   if (var == 1) {
-    test();
+    temp();
   }
 }
 
