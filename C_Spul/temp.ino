@@ -3,7 +3,7 @@ int lightnr=2;
 int led_groen=8;
 int led_geel=9;
 int led_rood=10;
-int vertraging=500;
+int b=5;
 int stati=3;
 //Hier voeren we de variabele waardes in.
 
@@ -21,7 +21,7 @@ void loop() {
 }
 
 void kees(int var) {
-//  var -=48;  
+  //var -=48;  
   switch(var) {
   case 1:
   light();  break;
@@ -35,6 +35,12 @@ void kees(int var) {
   statu(); break;
   case 6:
   ping(); break;  
+  case 7:
+  uitrol(5); break;
+  case 8:
+  uitrol(10); break;
+  case 9:
+  uitrol(15); break;
   }
 }
 
@@ -55,7 +61,7 @@ void temp() {
 
 void up() {
   digitalWrite(led_rood,HIGH);
-  for (int x=0;x<10;x++) {          //zie commentaar void down
+  for (int x=0;x<b;x++) {          //zie commentaar void down
     digitalWrite(led_geel,HIGH);
     delay(500);
     if (x%2==0) {
@@ -72,7 +78,7 @@ void up() {
 
 void down() {
   digitalWrite(led_groen,HIGH);
-  for (int x=0;x<10;x++) {          //dit is als teller
+  for (int x=0;x<b;x++) {          //dit is als teller
     digitalWrite(led_geel,HIGH);    //de gele led laten we knipperen
     delay(500);                     //door modulo te gebruiken knippert de led
     if (x%2==0) {
@@ -93,4 +99,9 @@ void statu() {
 
 void ping() {
   Serial.write(6);  
+}
+
+void uitrol(int snelheid) {
+  b = snelheid;
+  Serial.println(snelheid);
 }
