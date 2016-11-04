@@ -1,4 +1,3 @@
 from GUI.Centrale import GUI
 
-gui = GUI.mainloop()
-
+gui = GUI.main()
