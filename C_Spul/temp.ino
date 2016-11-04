@@ -17,9 +17,11 @@ void setup() {
 void loop() {
   int var = Serial.read();  //hier wordt de waarde gelezen die door python wordt gestuurd. 
                             //Daar moet arduino wat mee doen.
-  
-   
- //# var -=48;  
+  kees(var);  
+}
+
+void kees(int var) {
+  var -=48;  
   switch(var) {
   case 1:
   light();  break;
@@ -34,10 +36,6 @@ void loop() {
   case 6:
   ping(); break;  
   }
-}
-
-void kees() {
-  
 }
 
 void light() {
