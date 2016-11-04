@@ -1,8 +1,15 @@
-void loop() {
-  test();
+void setup() {
+  Serial.begin(19200); //baud rate.
 }
 
- void test() {
+void loop() {
+  int var = Serial.read();
+  if (var == 1) {
+    temp();
+  }
+}
+
+void temp() {
   int analoogpoort=0;
   int waarde = analogRead(analoogpoort);
   Serial.write(1);
