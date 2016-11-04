@@ -21,7 +21,7 @@ void loop() {
 }
 
 void kees(int var) {
-  var -=48;  
+//  var -=48;  
   switch(var) {
   case 1:
   light();  break;
