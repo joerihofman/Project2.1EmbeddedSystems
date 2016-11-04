@@ -1,5 +1,5 @@
 from tkinter import *
-#comment for push
+
 class GUI(Frame):
     def __init__(self, parent):
         Frame.__init__(self,parent)
