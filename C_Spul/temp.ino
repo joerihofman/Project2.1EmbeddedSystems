@@ -104,4 +104,6 @@ void ping() {
 void uitrol(int snelheid) {
   b = snelheid;
   Serial.println(snelheid);
+  //hier moet een 8 worden gestuurd.
+  //Denk hieraan dat println is om te testen. idioot.
 }
