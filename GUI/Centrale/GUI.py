@@ -56,6 +56,11 @@ def main():
 if __name__ == '__main__':
     main()
 
+
+def addTab(knopnaam):
+    knopnaam = ttk.Frame(notebook)
+
+
     #self.scherm = Tk()
     #self.scherm.mainloop()
 
