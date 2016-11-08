@@ -25,7 +25,7 @@ def test():
 #        x = metingen.read_arduino()
 #        return x
         x = "try"
-        print(x)
+        return x
     except:
         x = "except"
         print(x)
@@ -39,11 +39,11 @@ def main():
     testframe2 = ttk.Frame(notebook, width=500, height=100)
     notebook.add(testframe1, text='frame 1')
     notebook.add(testframe2, text='frame 2')
-    testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     notebook.pack()
-    knop=Button(testframe1, text="blabla", command=test)
-    knop.place(x=50,y=50)   #knop.pack()
-    testknop.pack()
+    testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
+    testknop.place(x=10,y=10)
+    knop=ttk.Label(testframe1, textvariable=test)
+    knop.place(x=10,y=35)   #knop.pack()
 
     #knop.pack()
 #    meting = Label(root,textvariable=test())
