@@ -39,7 +39,10 @@ def main():
     testframe2 = ttk.Frame(notebook)
     notebook.add(testframe1, text='frame 1')
     notebook.add(testframe2, text='frame 2')
+    testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     notebook.pack()
+    testknop.pack()
+
     #knop.pack()
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
