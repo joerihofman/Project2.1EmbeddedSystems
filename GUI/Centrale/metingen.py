@@ -1,8 +1,8 @@
-from pyserial.serial import serialwin32
+import serial
 import time
 
 
-ser = serialwin32.Serial('COM7',19200)
+ser = serial.Serial('COM7',19200)
 
 
 def read_arduino():
