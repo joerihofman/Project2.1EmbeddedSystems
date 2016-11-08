@@ -4,7 +4,7 @@ int led_groen=8;
 int led_geel=9;
 int led_rood=10;
 int b=5;
-int stati=3;
+int statusuit=3;
 //Hier voeren we de variabele waardes in.
 
 void setup() {
@@ -21,7 +21,6 @@ void loop() {
 }
 
 void kees(int var) {
-  //var -=48;  
   switch(var) {
   case 1:
   light();  break;
@@ -32,15 +31,15 @@ void kees(int var) {
   case 4:
   down();  break;
   case 5:
-  statu(); break;
+  statusin(); break;
   case 6:
-  ping(); break;  
+  ping(); break;
   case 7:
-  uitrol(5); break;
+  uitrol(5); break;    
   case 8:
-  uitrol(10); break;
+  uitrol(10); break;   
   case 9:
-  uitrol(15); break;
+  uitrol(15); break;   
   }
 }
 
@@ -72,8 +71,8 @@ void up() {
   digitalWrite(led_geel,LOW);
   digitalWrite(led_rood,LOW);
   digitalWrite(led_groen,HIGH);
-  stati = 3;
-  Serial.write(3);
+  statusuit = 3;
+  Serial.println(3);
 }
 
 void down() {
@@ -89,21 +88,19 @@ void down() {
   digitalWrite(led_geel,LOW);
   digitalWrite(led_rood,HIGH);
   digitalWrite(led_groen,LOW);  //hier worden de leds goed gezet
-  stati = 4;                    //dit is voor de status
-  Serial.write(4);
+  statusuit = 4;                    //dit is voor de status
+  Serial.println(4);
 }
 
-void statu() {
-  Serial.write(stati);
+void statusin() {
+  Serial.write(statusuit);
 }
 
 void ping() {
   Serial.write(6);  
 }
 
-void uitrol(int snelheid) {
+void uitrol(int snelheid){
   b = snelheid;
-  Serial.println(snelheid);
-  //hier moet een 8 worden gestuurd.
-  //Denk hieraan dat println is om te testen. idioot.
+  Serial.write(8);  
 }
