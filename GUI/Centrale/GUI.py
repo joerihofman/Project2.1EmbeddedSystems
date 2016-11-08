@@ -1,5 +1,5 @@
 from tkinter import *
-#from GUI.Centrale import metingen
+from GUI.Centrale import metingen
 
 
 class GUI(Frame):
