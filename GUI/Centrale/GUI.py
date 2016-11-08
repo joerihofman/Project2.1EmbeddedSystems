@@ -21,26 +21,28 @@ class GUI(Frame):
         self.pack(fill=BOTH, expand=1)
 
 def test():
-#    None
-#    y=metingen.read_arduino()
-#    return y
-    x = "test"
-    print(x)
-#test = metingen.read_arduino()
+    try:
+#        x = metingen.read_arduino()
+#        return x
+        x = "try"
+        print(x)
+    except:
+        x = "except"
+        print(x)
 
 def main():
     root = Tk()
 #    gui = GUI(root)
     root.geometry("600x450+300+300")
-    knop=Button(root, text="blabla", command=test)
-    knop.place(x=50,y=50)
     notebook = ttk.Notebook(root)
-    testframe1 = ttk.Frame(notebook)
-    testframe2 = ttk.Frame(notebook)
+    testframe1 = ttk.Frame(notebook, width=100, height=200)
+    testframe2 = ttk.Frame(notebook, width=500, height=100)
     notebook.add(testframe1, text='frame 1')
     notebook.add(testframe2, text='frame 2')
     testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     notebook.pack()
+    knop=Button(testframe1, text="blabla", command=test)
+    knop.place(x=50,y=50)   #knop.pack()
     testknop.pack()
 
     #knop.pack()
