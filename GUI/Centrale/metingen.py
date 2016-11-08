@@ -2,23 +2,15 @@ import serial
 import time
 
 
+ser = serial.Serial('COM3',19200)
 while True:
     try:
-        ser = serial.Serial('COM7',19200)
-        def read_arduino():
-            time.sleep(0.01)
-            x = ser.read()
-            x = x + ser.read()
-            print(x)
+        ser = serial.Serial('COM3',19200)
     except:
         print("geen com gevonden")
-        def read_arduino():
-            None
-        break
 
 
-
-
-
-#while 1 == 1:
-#    read_arduino()
+def read_arduino(input):
+    ser.write(bytes(b'%d')%input)
+    print(ser.read())
+    time.sleep(.1)
