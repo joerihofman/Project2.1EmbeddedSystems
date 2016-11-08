@@ -1,4 +1,6 @@
 from tkinter import *
+from GUI.Centrale import metingen
+
 
 class GUI(Frame):
     def __init__(self, parent):
@@ -7,8 +9,8 @@ class GUI(Frame):
         self.initUI()
         self.columnconfigure(10, weight=1)
         self.rowconfigure(3, weight=1)
-        self.curtab = None
-        self.tabs = {}
+#        self.curtab = None
+#        self.tabs = {}
 #        self.addtab()
         self.pack(fill=BOTH, expand=1, padx=5, pady=5)
 
@@ -17,14 +19,23 @@ class GUI(Frame):
         self.pack(fill=BOTH, expand=1)
 
 def test():
-    print("test")
+#    None
+#    y=metingen.read_arduino()
+#    return y
+    x = "test"
+    print(x)
+#test = metingen.read_arduino()
 
 def main():
     root = Tk()
-    gui = GUI(root)
+#    gui = GUI(root)
     root.geometry("600x450+300+300")
-    text=Button(root, text="blabla", command=test)
-    text.place(x=50,y=50)
+    knop=Button(root, text="blabla", command=test)
+    knop.place(x=50,y=50)
+    #knop.pack()
+#    meting = Label(root,textvariable=test())
+#    meting.place(x=100,y=50)
+    #meting.pack()
 #    gui.addtab()
     root.mainloop()
 

@@ -1,10 +1,10 @@
 int tempnr=0;
 int lightnr=2;
-int led_groen=10;
+int led_groen=8;
 int led_geel=9;
-int led_rood=8;
-int vertraging=500;
-int stati=0;
+int led_rood=10;
+int b=5;
+int statusuit=3;
 //Hier voeren we de variabele waardes in.
 
 void setup() {
@@ -17,29 +17,38 @@ void setup() {
 void loop() {
   int var = Serial.read();  //hier wordt de waarde gelezen die door python wordt gestuurd. 
                             //Daar moet arduino wat mee doen.
-  var -=48;
+  kees(var);  
+}
+
+void kees(int var) {
   switch(var) {
   case 1:
-  temp();  break;
-  case 2:
   light();  break;
+  case 2:
+  temp();  break;
   case 3:
   up();  break;
   case 4:
   down();  break;
   case 5:
-  stati(); break;
+  statusin(); break;
   case 6:
   ping(); break;
-  
+  case 7:
+  uitrol(5); break;    
+  case 8:
+  uitrol(10); break;   
+  case 9:
+  uitrol(15); break;   
   }
 }
 
 void light() {
   int waarde = analogRead(lightnr);
   Serial.write(1);
-  delay(50);
-  Serial.write(waarde);
+  delay(50);   
+  Serial.write(highByte(waarde));
+  Serial.write(lowByte(waarde));
  }
 
 void temp() {
@@ -51,7 +60,7 @@ void temp() {
 
 void up() {
   digitalWrite(led_rood,HIGH);
-  for (int x=0;x<10;x++) {
+  for (int x=0;x<b;x++) {          //zie commentaar void down
     digitalWrite(led_geel,HIGH);
     delay(500);
     if (x%2==0) {
@@ -62,15 +71,15 @@ void up() {
   digitalWrite(led_geel,LOW);
   digitalWrite(led_rood,LOW);
   digitalWrite(led_groen,HIGH);
-  stati = 0;
-  Serial.write(3);
+  statusuit = 3;
+  Serial.println(3);
 }
 
 void down() {
   digitalWrite(led_groen,HIGH);
-  for (int x=0;x<10;x++) {
-    digitalWrite(led_geel,HIGH);
-    delay(500);
+  for (int x=0;x<b;x++) {          //dit is als teller
+    digitalWrite(led_geel,HIGH);    //de gele led laten we knipperen
+    delay(500);                     //door modulo te gebruiken knippert de led
     if (x%2==0) {
       digitalWrite(led_geel,LOW);
       delay(500);
@@ -78,14 +87,20 @@ void down() {
   }
   digitalWrite(led_geel,LOW);
   digitalWrite(led_rood,HIGH);
-  digitalWrite(led_groen,LOW);
-  stati = 1;                    //dit is voor de status
+  digitalWrite(led_groen,LOW);  //hier worden de leds goed gezet
+  statusuit = 4;                    //dit is voor de status
+  Serial.println(4);
 }
 
-int ping() {
-  return 6;  
+void statusin() {
+  Serial.write(statusuit);
 }
 
-int stati() {
-  return stati;
+void ping() {
+  Serial.write(6);  
+}
+
+void uitrol(int snelheid){
+  b = snelheid;
+  Serial.write(8);  
 }
