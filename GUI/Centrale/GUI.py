@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import ttk
+from tkinter.ttk import *
 from GUI.Centrale import metingen
 
 
@@ -32,6 +34,12 @@ def main():
     root.geometry("600x450+300+300")
     knop=Button(root, text="blabla", command=test)
     knop.place(x=50,y=50)
+    notebook = ttk.Notebook(root)
+    testframe1 = ttk.Frame(notebook)
+    testframe2 = ttk.Frame(notebook)
+    notebook.add(testframe1, text='frame 1')
+    notebook.add(testframe2, text='frame 2')
+    notebook.pack()
     #knop.pack()
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
