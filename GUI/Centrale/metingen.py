@@ -2,31 +2,28 @@ import serial
 import time
 
 ser = serial.Serial (
-    port='COM3',
+    port='COM4',
     baudrate=19200,)
 
 ser.isOpen()
 
+
 #input = 1
 while True:
-    input2 = input("input graag: ")
-    # als je niets invuld stopttdt het
-    if input2 > 0 and input2 <= 9:
-        if input2 == 1:
-            input3 = num(input2)
-            ser.write(bytes(b'%d') % input3)
-            raw = ser.read(size=2)
-            if raw:
-                high,low = raw
-                val = high * 256 + low
-                val = 1023 - val
-                print(val)
-        else:
-            input3 = num(input2)
-            ser.write(bytes(b'%d') % input3)
-            time.sleep(.1)
-            s = int.from_bytes(ser.read(),byteorder='big')
-            print(s)
+    input2 = int(input("input graag: "))
+    if input2 == 1:
+        ser.write(bytes(b'%d') % input2)
+        raw = ser.read(size=2)
+        if raw:
+            high,low = raw
+            val = high * 256 + low
+            val = 1023 - val
+            print(val)
+    else:
+        ser.write(bytes(b'%d') % input2)
+        time.sleep(.1)
+        s = int.from_bytes(ser.read(),byteorder='big')
+        print(s)
 
 
 # while True:
@@ -43,9 +40,3 @@ while True:
 # input2 = int(input("Kies commando: "))
 #
 # read_arduino(input2)
-
-#def num(t):
-#     try:
-#         return int(t)
-#     except ValueError:
-#         pass
