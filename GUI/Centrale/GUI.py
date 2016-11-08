@@ -1,5 +1,5 @@
 from tkinter import *
-from GUI.Centrale import metingen
+#from GUI.Centrale import metingen
 
 
 class GUI(Frame):
@@ -18,13 +18,13 @@ class GUI(Frame):
         self.parent.title("Test")
         self.pack(fill=BOTH, expand=1)
 
-#def test():
+def test():
 #    None
 #    y=metingen.read_arduino()
 #    return y
-#    x = "test"
-#    print(x)
-test = metingen.read_arduino()
+    x = "test"
+    print(x)
+#test = metingen.read_arduino()
 
 def main():
     root = Tk()

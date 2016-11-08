@@ -3,6 +3,11 @@ import time
 
 
 ser = serial.Serial('COM7',19200)
+while True:
+    try:
+        ser = serial.Serial('COM7',19200)
+    except:
+        print("geen com gevonden")
 
 
 def read_arduino():
