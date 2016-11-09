@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter.ttk import *
+#from tkinter.ttk import *
 from GUI.Centrale import metingen
-
+import matplotlib.pyplot as plt
 
 class GUI(Frame):
     def __init__(self, parent):
@@ -19,19 +19,24 @@ class GUI(Frame):
     def initUI(self):
         self.parent.title("Test")
         self.pack(fill=BOTH, expand=1)
-
+x = ""
 def test():
+#    global x
     try:
-#        x = metingen.read_arduino()
+#        invoer = int(input('Commando? '))
+#        x = metingen.read_arduino(commando)
+#        print(x)
 #        return x
-        x = "try"
-        return x
+        print("aaa")
+#        return x
     except:
         x = "except"
         print(x)
-
+        return x
+#aa
 def main():
     root = Tk()
+    values = [1, 3, 5, 3, 2, 8]
 #    gui = GUI(root)
     root.geometry("600x450+300+300")
     notebook = ttk.Notebook(root)
@@ -39,13 +44,16 @@ def main():
     testframe2 = ttk.Frame(notebook, width=500, height=100)
     notebook.add(testframe1, text='frame 1')
     notebook.add(testframe2, text='frame 2')
+    testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
+    plt.plot(values, 'r-')
+    plt.show()
     notebook.pack()
     testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     testknop.place(x=10,y=10)
-    knop=ttk.Label(testframe1, textvariable=test)
-    knop.place(x=10,y=35)   #knop.pack()
-
-    #knop.pack()
+    testknop.place(x=10,y=10)
+    knop=ttk.Label(testframe1, textvariable=x)
+    knop.place(x=10,y=35)
+    knop.pack()
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
     #meting.pack()
@@ -57,8 +65,8 @@ if __name__ == '__main__':
     main()
 
 
-def addTab(knopnaam):
-    knopnaam = ttk.Frame(notebook)
+#def addTab(knopnaam):
+#    knopnaam = ttk.Frame(notebook)
 
 
     #self.scherm = Tk()

@@ -4,6 +4,7 @@ import time
 ser = serial.Serial (
     port='COM4',
     baudrate=19200,)
+
 ser.isOpen()
 time.sleep(3)
 
@@ -17,6 +18,14 @@ def arduino(var):
             val = high * 256 + low
             val = 1023 - val
             return val
+    elif input2 == 2:
+        ser.write(bytes(b'%d') % input2)
+        time.sleep(.1)
+        s = int.from_bytes(ser.read(size=1), byteorder='big')
+        s2 = s * 5
+        s3 = float(s2 / 1024.0)
+        val = (s3 - 0.5) * 100
+        return(val)
     else:
         ser.write(bytes(b'%d') % var)
         time.sleep(.1)
@@ -35,7 +44,7 @@ while True:
 
 
 
-                    # while True:
+# while True:
 #     try:
 #         ser = serial.Serial('COM3',19200)
 #     except:
@@ -49,3 +58,9 @@ while True:
 # input2 = int(input("Kies commando: "))
 #
 # read_arduino(input2)
+
+#def num(t):
+#     try:
+#         return int(t)
+#     except ValueError:
+#         pass
