@@ -1,10 +1,21 @@
 import serial
+import serial.tools.list_ports
 import sys
 import time
 
-ser = serial.Serial (
-    port='COM3',
-    baudrate=19200,)
+ports = list(serial.tools.list_ports.comports())
+for p in ports:
+    comport = p[0][:5]
+
+def checkport():
+    try:
+        global ser
+        global ports
+        ser = serial.Serial(port=comport, baudrate=19200)
+    except serial.serialutil.SerialException:
+        print("geen comport gevonden")
+
+checkport()
 
 ser.isOpen()
 print("1:licht  2:temp  3:up    4:down  5:status    6:ping  7:uitrol5   8:uitrol10  9:uitrol15")
@@ -13,7 +24,6 @@ def invoercommando():
     while True:
         try:
             input2 = int(input("input graag: "))
-            # als je niets invuld stopttdt het
             if input2 > 0 and input2 <= 9:
                 if input2 == 1:
                     ser.write(bytes(b'%d') % input2)
