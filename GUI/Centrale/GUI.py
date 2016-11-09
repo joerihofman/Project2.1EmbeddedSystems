@@ -19,21 +19,17 @@ class GUI(Frame):
     def initUI(self):
         self.parent.title("Test")
         self.pack(fill=BOTH, expand=1)
-x = ""
+
 def test():
-#    global x
     try:
-#        invoer = int(input('Commando? '))
-#        x = metingen.read_arduino(commando)
-#        print(x)
-#        return x
-        print("aaa")
-#        return x
+        try1 = "try"
+        print(try1)
+        return try1
     except:
-        x = "except"
-        print(x)
-        return x
-#aa
+        try1="except"
+        print(try1)
+        return try1
+
 def grafiek():
     values2 = [8,3,5,7,2]
 
@@ -49,9 +45,9 @@ def grafiek():
 
     plt.show()
 
+#TODO: opvulling weg halen
+opvulling = 0
 
-
-#aa`
 def main():
     def nieuwetabbladen():
         for i in range(8):
@@ -64,6 +60,7 @@ def main():
     notebook = ttk.Notebook(root)
     centraalframe = ttk.Frame(notebook, width=100, height=200)
     notebook.add(centraalframe, text='Centraal')
+   # testknop = ttk.Button(centraalframe, text = "blabla v2", command=test)
     notebook.pack()
     testknop = ttk.Button(centraalframe, text = "grafiek", command=grafiek)
     testknop.place(x=10,y=10)
@@ -89,9 +86,9 @@ def main():
     sep6.grid(row=6, column=0, sticky='ew')
     whitespace3 = ttk.Label(centraalframe)
     whitespace3.grid(row=7,column=1)
-    maxitemplabel = ttk.Label(centraalframe, text ='Maximale temperatuur:')
+    maxitemplabel = ttk.Label(centraalframe, text ='Maximale temperatuur: %d' % opvulling) #TODO: opvulling veranderen
     maxitemplabel.grid(row = 8, column = 0)
-    maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte:')
+    maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte: %d' % opvulling)
     maxirollabel.grid(row = 8, column = 2)
     maxitempbox = ttk.Combobox(centraalframe)
     maxitempbox.grid(row = 9, column =0)
@@ -145,4 +142,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
