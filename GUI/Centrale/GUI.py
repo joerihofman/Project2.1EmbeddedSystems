@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 #from tkinter.ttk import *
 from GUI.Centrale import metingen
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 class GUI(Frame):
     def __init__(self, parent):
@@ -49,17 +49,17 @@ def main():
     notebook.add(testframe1, text='frame 1')
     notebook.add(testframe2, text='frame 2')
     testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
-    plt.plot(values, 'r-')
-    plt.show()
+#    plt.plot(values, 'r-')
+#    plt.show()
     notebook.pack()
     testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     testknop.place(x=10,y=10)
     knop=ttk.Label(testframe1, textvariable=x)
     knop.place(x=10,y=35)
     knop.pack()
-    testknop2 = ttk.Button(testframe1, text = "nieuw tabblad", command =eenheleboeltestknoppen)
-    testknop2.place(x=10,y=60)
-    testknop2.pack()
+#    testknop2 = ttk.Button(testframe1, text = "nieuw tabblad", command =eenheleboeltestknoppen)
+#    testknop2.place(x=10,y=60)
+#    testknop2.pack()
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
     #meting.pack()
