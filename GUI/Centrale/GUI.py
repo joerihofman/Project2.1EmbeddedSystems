@@ -39,8 +39,9 @@ def test():
 def main():
     def eenheleboeltestknoppen():
         for i in range(5):
-            knoppie = ttk.Button(testframe1, text=i, command=test)
-            knoppie.pack()
+            nieuweframe = ttk.Frame(notebook, width=100, height=200)
+            notebook.add(nieuweframe, text=i)
+            notebook.pack()
     root = Tk()
     values = [1, 3, 5, 3, 2, 8]
 #    gui = GUI(root)
