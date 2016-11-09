@@ -3,7 +3,7 @@ import sys
 import time
 
 ser = serial.Serial (
-    port='COM7',
+    port='COM3',
     baudrate=19200,)
 
 ser.isOpen()
