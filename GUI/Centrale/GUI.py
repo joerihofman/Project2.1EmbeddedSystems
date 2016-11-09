@@ -33,7 +33,11 @@ def test():
         x = "except"
         print(x)
         return x
-#aa
+
+def eenheleboeltestknoppen():
+    for i in range(5):
+        knoppie = ttk.Button(testframe1, text = i, command =test)
+#aa`
 def main():
     root = Tk()
     values = [1, 3, 5, 3, 2, 8]
@@ -50,10 +54,12 @@ def main():
     notebook.pack()
     testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     testknop.place(x=10,y=10)
-    testknop.place(x=10,y=10)
     knop=ttk.Label(testframe1, textvariable=x)
     knop.place(x=10,y=35)
     knop.pack()
+    testknop2 = ttk.Button(testframe1, text = "nieuw tabblad", command =eenheleboeltestknoppen)
+    testknop2.place(x=10,y=60)
+    testknop2.pack()
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
     #meting.pack()
@@ -63,6 +69,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 #def addTab(knopnaam):
