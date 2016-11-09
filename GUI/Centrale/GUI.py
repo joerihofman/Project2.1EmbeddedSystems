@@ -3,7 +3,7 @@ from tkinter import ttk
 #from tkinter.ttk import *
 from GUI.Centrale import metingen
 import matplotlib.pyplot as plt
-
+#dd
 class GUI(Frame):
     def __init__(self, parent):
         Frame.__init__(self,parent)
