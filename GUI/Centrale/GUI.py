@@ -37,10 +37,10 @@ def test():
 
 #aa`
 def main():
-    def eenheleboeltestknoppen():
-        for i in range(5):
+    def nieuwetabbladen():
+        for i in range(8):
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
-            notebook.add(nieuweframe, text=i)
+            notebook.add(nieuweframe, text='frame %d' % i + 2)
             notebook.pack()
     root = Tk()
     values = [1, 3, 5, 3, 2, 8]
@@ -60,7 +60,7 @@ def main():
     knop=ttk.Label(testframe1, textvariable=x)
     knop.place(x=10,y=35)
     knop.pack()
-    testknop2 = ttk.Button(testframe1, text = "nieuw tabblad", command =eenheleboeltestknoppen)
+    testknop2 = ttk.Button(testframe1, text = "nieuw tabblad", command =nieuwetabbladen())
     testknop2.place(x=10,y=60)
     testknop2.pack()
 
