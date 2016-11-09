@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 #from tkinter.ttk import *
 from GUI.Centrale import metingen
-
+import matplotlib.pyplot as plt
 
 class GUI(Frame):
     def __init__(self, parent):
@@ -36,6 +36,7 @@ def test():
 
 def main():
     root = Tk()
+    values = [1, 3, 5, 3, 2, 8]
 #    gui = GUI(root)
     root.geometry("600x450+300+300")
     notebook = ttk.Notebook(root)
@@ -43,6 +44,9 @@ def main():
     testframe2 = ttk.Frame(notebook, width=500, height=100)
     notebook.add(testframe1, text='frame 1')
     notebook.add(testframe2, text='frame 2')
+    testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
+    plt.plot(values, 'r-')
+    plt.show()
     notebook.pack()
     testknop = ttk.Button(testframe1, text = "blabla v2", command=test)
     testknop.place(x=10,y=10)
