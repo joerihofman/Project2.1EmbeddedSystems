@@ -38,13 +38,12 @@ def grafiek():
     #values = [1,2,5,3,8,2,6,4,5,6,7,1,2,5,3,6,4,3,7]
     values2 = [8,3,5,7,2]
     fig = plt.figure()
-    a = fig.addsubplot(111)
-    a = plt.plot(metingen.testlist, 'r-')
+#    a = fig.addsubplot(111)
+#    a = plt.plot(metingen.testlist, 'r-')
 
     b = plt.plot(values2, 'r-')
     plt.grid(True)
     plt.show()
-
 
 
 
@@ -73,7 +72,7 @@ def main():
     sep2.grid(row=2, column=2, sticky='ew')
     sep3 = ttk.Separator(centraalframe, orient="horizontal")
     sep3.grid(row=2, column=0, sticky='ew')
-    centraalbordenaan = ttk.Label(centraalframe,text='Aantal borden aan: WIP')
+    centraalbordenaan = ttk.Label(centraalframe,text='Aantal borden aan: %d' % metingen.aantalpoorten)
     centraalbordenaan.grid(row = 3, column = 1)
     sep4 = ttk.Separator(centraalframe, orient="horizontal")
     sep4.grid(row = 4, column = 1, sticky= 'ew')

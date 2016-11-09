@@ -1,12 +1,13 @@
 import serial
 import serial.tools.list_ports
-import sys
 import time
 
 ports = list(serial.tools.list_ports.comports())
 for p in ports:
     comport = p[0][:5]
-#aa
+
+aantalpoorten = len(ports)
+
 def checkport():
     try:
         global ports
@@ -19,7 +20,7 @@ checkport()
 
 ser.isOpen()
 time.sleep(2)
-
+"""
 def arduino(var):
     if var == 1:
         ser.write(bytes(b'%d') % var)
@@ -58,7 +59,7 @@ while True:
         #if lightvalue < 500:
         #    arduino(4)
 
-
+"""
 
 # while True:
 #     try:
