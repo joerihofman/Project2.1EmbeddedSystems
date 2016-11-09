@@ -53,7 +53,7 @@ def invoercommando():
             print("er ging iets goed fout")
             sys.exit()
 
-
+#test
 #invoercommando()
 
 # while True:
