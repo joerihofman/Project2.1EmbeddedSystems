@@ -6,7 +6,7 @@ import time
 ports = list(serial.tools.list_ports.comports())
 for p in ports:
     comport = p[0][:5]
-
+#aa
 def checkport():
     try:
         global ser
