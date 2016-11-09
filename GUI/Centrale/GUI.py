@@ -3,7 +3,7 @@ from tkinter import ttk
 #from tkinter.ttk import *
 from GUI.Centrale import metingen
 import matplotlib.pyplot as plt
-#dd
+
 class GUI(Frame):
     def __init__(self, parent):
         Frame.__init__(self,parent)
@@ -35,9 +35,13 @@ def test():
         return x
 #aa
 def grafiek():
-    values = [1,2,5,3,8,2,6,4,5,6,7,1,2,5,3,6,4,3,7]
-    #values2 = [8,3,5,7,2]
-    plt.plot(values, 'r-')
+    #values = [1,2,5,3,8,2,6,4,5,6,7,1,2,5,3,6,4,3,7]
+    values2 = [8,3,5,7,2]
+    fig = plt.figure()
+    a = fig.addsubplot(111)
+    a = plt.plot(metingen.testlist, 'r-')
+
+    b = plt.plot(values2, 'r-')
     plt.grid(True)
     plt.show()
 
@@ -58,11 +62,9 @@ def main():
     centraalframe = ttk.Frame(notebook, width=100, height=200)
     notebook.add(centraalframe, text='Centraal')
    # testknop = ttk.Button(centraalframe, text = "blabla v2", command=test)
-#    plt.plot(values, 'r-')
-#    plt.show()
     notebook.pack()
-  #  testknop = ttk.Button(centraalframe, text = "blabla v2", command=test)
-  #  testknop.place(x=10,y=10)
+    testknop = ttk.Button(centraalframe, text = "grafiek", command=grafiek)
+    testknop.place(x=10,y=10)
     centraallabel = ttk.Label(centraalframe,text= 'Centraal')
     centraallabel.grid(row = 1, column = 1 )
     sep1 = ttk.Separator(centraalframe, orient="horizontal")
