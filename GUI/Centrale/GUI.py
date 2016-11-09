@@ -60,7 +60,6 @@ def main():
     notebook = ttk.Notebook(root)
     centraalframe = ttk.Frame(notebook, width=100, height=200)
     notebook.add(centraalframe, text='Centraal')
-   # testknop = ttk.Button(centraalframe, text = "blabla v2", command=test)
     notebook.pack()
     testknop = ttk.Button(centraalframe, text = "grafiek", command=grafiek)
     testknop.place(x=10,y=10)
@@ -96,9 +95,11 @@ def main():
     maxirolbox.grid(row = 9, column =2)
     whitespace4 = ttk.Label(centraalframe)
     whitespace4.grid(row=10,column=1)
-    leegmakenknop = ttk.Button(centraalframe,text='Leegmaken WIP')
+    #TODO: leegmaken
+    leegmakenknop = ttk.Button(centraalframe,text='Leegmaken')
     leegmakenknop.grid(row = 11, column = 0)
-    accepterenknop = ttk.Button(centraalframe,text='Accepteren WIP')
+    #TODO: accepteren
+    accepterenknop = ttk.Button(centraalframe,text='Accepteren')
     accepterenknop.grid(row=11,column=2)
     whitespace5 = ttk.Label(centraalframe)
     whitespace5.grid(row=12,column=1)
@@ -110,9 +111,11 @@ def main():
     sep9.grid(row=13, column=2, sticky='ew')
     whitespace6 = ttk.Label(centraalframe)
     whitespace6.grid(row=14,column=1)
-    openknop = ttk.Button(centraalframe,text='Alle luiken open WIP')
+    #TODO: Alle luiken open
+    openknop = ttk.Button(centraalframe,text='Alle luiken open')
     openknop.grid(row=15, column=0)
-    sluitknop = ttk.Button(centraalframe,text='Alle luiken sluiten WIP')
+    #TODO: Alle luiken sluiten
+    sluitknop = ttk.Button(centraalframe,text='Alle luiken sluiten')
     sluitknop.grid(row=15,column=2)
     whitespace7 = ttk.Label(centraalframe)
     whitespace7.grid(row=16,column=1)
@@ -124,7 +127,8 @@ def main():
     sep12.grid(row=17, column=2,sticky='ew')
     whitespace8 = ttk.Label(centraalframe)
     whitespace8.grid(row=18,column=1)
-    nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten WIP')
+    #TODO: Nieuw bordje aansluiten
+    nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten')
     nieuwbordknop.grid(row=19,column=1)
     whitespace9 = ttk.Label(centraalframe)
     whitespace9.grid(row=20,column=1)
@@ -138,47 +142,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-#def addTab(knopnaam):
-#    knopnaam = ttk.Frame(notebook)
-
-
-    #self.scherm = Tk()
-    #self.scherm.mainloop()
-
-
-#    def mainloop(self):
-#        self.scherm.mainloop()
-
-"""
-
-    def addtab(self):
-        tabslen = len(self.tabs)
-        if tabslen < 10:
-            tab = {}
-            btn_central = Button(self, text="centrale", command=lambda: self.raiseTab(0))
-            btn_central.grid(row=0, column=0, sticky=W+E)
-            btn_arduinos = Button(self, text="Tab "+str(tabslen), command=lambda: self.raiseTab(tabslen))
-            btn_arduinos.grid(row=0, column=tabslen, sticky=W+E)
-
-            textbox = Text(self.parent)
-            textbox.grid(row=1, column=0, columnspan=10, rowspan=2, sticky=W+E+N+S, in_=self)
-
-            # Y axis scroll bar
-            scrollby = Scrollbar(self, command=textbox.yview)
-            scrollby.grid(row=7, column=5, rowspan=2, columnspan=1, sticky=N+S+E)
-            textbox['yscrollcommand'] = scrollby.set
-
-            tab['id']=tabslen
-            tab['btn_arduinos']=btn_arduinos
-            tab['txtbx']=textbox
-            self.tabs[tabslen] = tab
-            self.raiseTab(tabslen)
-
-    def raiseTab(self, tabid):
-        g("cur_tab"+str(self.curtab))
-        if self.curtab!= None and self.curtab != tabid and len(self.tabs)>1:
-                self.tabs[tabid]['txtbx'].lift(self)
-                self.tabs[self.curtab]['txtbx'].lower(self)
-        self.curtab = tabid
-"""
