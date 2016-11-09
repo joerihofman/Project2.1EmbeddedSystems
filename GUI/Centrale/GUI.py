@@ -35,14 +35,18 @@ def test():
         return x
 #aa
 def grafiek():
-    #values = [1,2,5,3,8,2,6,4,5,6,7,1,2,5,3,6,4,3,7]
     values2 = [8,3,5,7,2]
-    fig = plt.figure()
-#    a = fig.addsubplot(111)
-#    a = plt.plot(metingen.testlist, 'r-')
 
-    b = plt.plot(values2, 'r-')
+    plt.figure(1)
+
+    plt.subplot(211)
+    plt.plot(metingen.testlist, 'r-')
     plt.grid(True)
+
+    plt.subplot(212)
+    plt.plot(values2, 'r-')
+    plt.grid(True)
+
     plt.show()
 
 
