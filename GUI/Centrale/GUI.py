@@ -40,7 +40,7 @@ def main():
     def nieuwetabbladen():
         for i in range(8):
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
-            notebook.add(nieuweframe, text='frame %d' % i + 2)
+            notebook.add(nieuweframe, text='frame %d' % i)
             notebook.pack()
     root = Tk()
     values = [1, 3, 5, 3, 2, 8]
