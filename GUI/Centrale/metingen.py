@@ -5,7 +5,7 @@ import time
 ser = serial.Serial (
     port='COM3',
     baudrate=19200,)
-
+#ditiseenfaal
 ser.isOpen()
 print("1:licht  2:temp  3:up    4:down  5:status    6:ping  7:uitrol5   8:uitrol10  9:uitrol15")
 #input = 1
