@@ -2,8 +2,8 @@ from tkinter import *
 from tkinter import ttk
 #from tkinter.ttk import *
 from GUI.Centrale import metingen
-#import matplotlib.pyplot as plt
-
+import matplotlib.pyplot as plt
+#dd
 class GUI(Frame):
     def __init__(self, parent):
         Frame.__init__(self,parent)
@@ -33,6 +33,15 @@ def test():
         x = "except"
         print(x)
         return x
+#aa
+def grafiek():
+    values = [1,2,5,3,8,2,6,4,5,6,7,1,2,5,3,6,4,3,7]
+    #values2 = [8,3,5,7,2]
+    plt.plot(values, 'r-')
+    plt.grid(True)
+    plt.show()
+
+
 
 
 #aa`
@@ -43,7 +52,6 @@ def main():
             notebook.add(nieuweframe, text='frame %d' % i)
             notebook.pack()
     root = Tk()
-    values = [1, 3, 5, 3, 2, 8]
 #    gui = GUI(root)
     root.geometry("600x450+300+300")
     notebook = ttk.Notebook(root)
@@ -110,7 +118,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
 
 #def addTab(knopnaam):
