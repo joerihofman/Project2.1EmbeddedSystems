@@ -18,8 +18,8 @@ def arduino(var):
             val = high * 256 + low
             val = 1023 - val
             return val
-    elif input2 == 2:
-        ser.write(bytes(b'%d') % input2)
+    elif val == 2:
+        ser.write(bytes(b'%d') % val)
         time.sleep(.1)
         s = int.from_bytes(ser.read(size=1), byteorder='big')
         s2 = s * 5
