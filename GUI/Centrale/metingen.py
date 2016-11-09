@@ -28,22 +28,20 @@ def arduino(var):
             high,low = raw
             val = high * 256 + low
             val = 1023 - val
-            return val
+            return(val)
     elif var == 2:
         ser.write(bytes(b'%d') % var)
         time.sleep(.1)
         s = int.from_bytes(ser.read(size=1), byteorder='big')
-        s2 = s * 5
-        s3 = float(s2 / 1024.0)
-        val = (s3 - 0.5) * 100
-        return(format(val,'.2f'))
+        val = round((float((s*5)/1024.0)-0.5)*100,2) #berekening voor de temp value
+        return(val)
     else:
         ser.write(bytes(b'%d') % var)
         time.sleep(.1)
         val = int.from_bytes(ser.read(),byteorder='big')
         return(val)
 
-timer = 1
+timer = 0
 listlight = []
 listtemp = []
 while True:
