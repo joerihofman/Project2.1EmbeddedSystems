@@ -49,10 +49,11 @@ def grafiek():
 opvulling = 0
 
 def main():
-    def nieuwetabbladen():
-        for i in range(8):
+    def nieuwebordje():
+        for i in range(metingen.aantalpoorten):
+            a = i + 1
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
-            notebook.add(nieuweframe, text='frame %d' % i)
+            notebook.add(nieuweframe, text='Bord %d' % a)
             notebook.pack()
     root = Tk()
 #    gui = GUI(root)
@@ -129,7 +130,7 @@ def main():
     whitespace8 = ttk.Label(centraalframe)
     whitespace8.grid(row=18,column=1)
     #TODO: Nieuw bordje aansluiten
-    nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten')
+    nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten',command=nieuwebordje)
     nieuwbordknop.grid(row=19,column=1)
     whitespace9 = ttk.Label(centraalframe)
     whitespace9.grid(row=20,column=1)
