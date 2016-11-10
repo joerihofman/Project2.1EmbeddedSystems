@@ -44,7 +44,12 @@ if ports:
 
     timer = 0
     listlight = []
+    #lijstjes voor de temp
     listtemp = []
+    listtempuur = []
+    listtempdag = []
+    listtempweek = []
+    listtempmaand = []
     def whileloop():
         while True:
             global timer
@@ -52,12 +57,30 @@ if ports:
             timer += 1
             if timer% 2 == 0: #TODO verander dit naar 60 om elke 60 seconden waarden in een lijst te zetten.
                 lightvalue = arduino(1)
-                tempvalue = arduino(2)
+                #tempvalue = arduino(2)
                 listlight.append(lightvalue)
-                listtemp.append(tempvalue)
+                if (len(listtemp) == 60):
+                    x = sum(listtemp) / 60
+                    listtempuur.append(x)
+                    del listtemp[:]
+                if (len(listtempuur) == 24):
+                    y = sum(listtempuur) / 24
+                    listtempdag.append(y)
+                    del listtempuur[:]
+                if (len(listtempdag) == 7):
+                    h = sum(listtempdag) / 7
+                    listtempweek.append(h)
+                    del listtempdag[:]
+                if (len(listtempweek) == 4):
+                    z = sum(listtempdag) / 4
+                    listtempmaand.append(z)
+                    del listtempweek[:]
+                if (len(listtempmaand) == 12):
+                    del listtempmaand[:]
+                #listtemp.append(tempvalue)
                 timer = 0
-                print(listlight)
-                print(listtemp)
+                #print(listlight)
+                #print(listtemp)
                 #if lightvalue < 500:
                 #    arduino(4)
 else:
