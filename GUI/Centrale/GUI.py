@@ -12,7 +12,6 @@ class GUI(Frame):
         self.initUI()
         self.columnconfigure(10, weight=1)
         self.rowconfigure(3, weight=1)
-
         self.pack(fill=BOTH, expand=1, padx=5, pady=5)
 
     def initUI(self):
@@ -47,10 +46,14 @@ def grafiek():
 opvulling = 0
 
 def main():
+
+    instellingenvenster_list=[]
+
     #maakt een instellingenvenster aan voor een bordje
     #TODO: sluit het instellingenvenster als centraal wordt gesloten
     def instellingenvenster(nummer):
         instellingenvenstertje = Tk()
+        instellingenvenster_list.append(instellingenvenstertje)
         instellingenvenstertje.geometry("300x200+300+300")
         ivensterlabel = ttk.Label(instellingenvenstertje, text='Instellingen bord %d' % nummer)
         ivensterlabel.grid(row=0,column=1)
@@ -218,6 +221,7 @@ def main():
     def vraag():
         if messagebox.askokcancel("Stoppen", "Weet je zeker dat je wilt stoppen?"):
             root.destroy()
+            for i in instellingenvenster_list: i.destroy()
             plt.close()
     root.protocol("WM_DELETE_WINDOW", vraag)
     root.mainloop()
