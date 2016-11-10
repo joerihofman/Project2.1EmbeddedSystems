@@ -32,17 +32,13 @@ def test():
 
 def grafiek():
     values2 = [8,3,5,7,2]
-
     plt.figure(1)
-
     plt.subplot(211)
     plt.plot(metingen.testlist, 'r-')
     plt.grid(True)
-
     plt.subplot(212)
     plt.plot(values2, 'r-')
     plt.grid(True)
-
     plt.show()
 
 #TODO: opvulling weg halen
