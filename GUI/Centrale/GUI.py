@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-#from tkinter.ttk import *
+
 from GUI.Centrale import metingen
 import matplotlib.pyplot as plt
 
@@ -12,9 +12,7 @@ class GUI(Frame):
         self.initUI()
         self.columnconfigure(10, weight=1)
         self.rowconfigure(3, weight=1)
-#        self.curtab = None
-#        self.tabs = {}
-#        self.addtab()
+
         self.pack(fill=BOTH, expand=1, padx=5, pady=5)
 
     def initUI(self):
