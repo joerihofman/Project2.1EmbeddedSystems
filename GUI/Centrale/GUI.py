@@ -49,6 +49,31 @@ def grafiek():
 opvulling = 0
 
 def main():
+    #maakt een instellingenvenster aan voor een bordje
+    #TODO: sluit het instellingenvenster als centraal wordt gesloten
+    def instellingenvenster(nummer):
+        instellingenvenstertje = Tk()
+        instellingenvenstertje.geometry("300x200+300+300")
+        ivensterlabel = ttk.Label(instellingenvenstertje, text='Instellingen bord %d' % nummer)
+        ivensterlabel.grid(row=0,column=1)
+        isep1 = ttk.Separator(instellingenvenstertje)
+        isep1.grid(row=1,column=0,sticky='ew')
+        isep2 = ttk.Separator(instellingenvenstertje)
+        isep2.grid(row=1,column=1,sticky='ew')
+        isep3 = ttk.Separator(instellingenvenstertje)
+        isep3.grid(row=1,column=2,stick='ew')
+        iwhitespace1 = ttk.Label(instellingenvenstertje)
+        iwhitespace1.grid(row=2,column=1)
+        iuitrollengte = ttk.Label(instellingenvenstertje, text='Uitrollengte: ')
+        iuitrollengte.grid(row=3,column=1)
+        #TODO: laat knoppen de uitrollengte van het bord instellen
+        i50cm = ttk.Button(instellingenvenstertje, text='50 cm')
+        i50cm.grid(row=4,column=0)
+        i100cm = ttk.Button(instellingenvenstertje, text='100 cm')
+        i100cm.grid(row=4,column=1)
+        ihelemaal= ttk.Button(instellingenvenstertje, text='Helemaal')
+        ihelemaal.grid(row=4,column=2)
+    #maakt een tabblad aan voor een bordje
     def nieuwebordje():
         #todo: laat maar een tabblad per bord open kunnen laten gaan
         for i in range(metingen.aantalpoorten):
@@ -103,19 +128,19 @@ def main():
             bordsep8.grid(row=11, column=1, sticky='ew')
             bordsep9 = ttk.Separator(nieuweframe, orient="horizontal")
             bordsep9.grid(row=11, column=2, sticky='ew')
-            #TODO: Venster instellingen bordje
-            instellingenbordknop = ttk.Button(nieuweframe,text='Instellingen Bordje')
+            instellingenbordknop = ttk.Button(nieuweframe,text='Instellingen Bordje',command=lambda: instellingenvenster(a))
             instellingenbordknop.grid(row=12,column=1)
             bordwhitespace3 = ttk.Label(nieuweframe)
             bordwhitespace3.grid(row=13,column=1)
 
+
+
     root = Tk()
-#    gui = GUI(root)
+
     root.geometry("600x450+300+300")
     notebook = ttk.Notebook(root)
     centraalframe = ttk.Frame(notebook, width=100, height=200)
     notebook.add(centraalframe, text='Centraal')
-   # testknop = ttk.Button(centraalframe, text = "blabla v2", command=test)
     notebook.pack()
     testknop = ttk.Button(centraalframe, text = "grafiek", command=grafiek)
     testknop.place(x=10,y=10)
