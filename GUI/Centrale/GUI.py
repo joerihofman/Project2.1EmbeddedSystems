@@ -192,11 +192,11 @@ def main():
 #    meting.place(x=100,y=50)
     #meting.pack()
 #    gui.addtab()
-    def callback():
-        if messagebox.askokcancel("Quit", "Do you really wish to quit?"):
+    def vraag():
+        if messagebox.askokcancel("Stoppen", "Weet je zeker dat je wilt stoppen?"):
             root.destroy()
             plt.close()
-    root.protocol("WM_DELETE_WINDOW", callback)
+    root.protocol("WM_DELETE_WINDOW", vraag)
     root.mainloop()
 
 
