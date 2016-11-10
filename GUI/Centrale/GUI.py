@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 #from tkinter.ttk import *
 from GUI.Centrale import metingen
 import matplotlib.pyplot as plt
@@ -31,10 +32,13 @@ def test():
         return try1
 
 def grafiek():
+    values = [1,3]
     values2 = [8,3,5,7,2]
     plt.figure(1)
+    plt.ion()
     plt.subplot(211)
-    plt.plot(metingen.testlist, 'r-')
+    #plt.plot(metingen.testlist, 'r-')
+    plt.plot(values, 'r-')
     plt.grid(True)
     plt.subplot(212)
     plt.plot(values2, 'r-')
@@ -134,6 +138,11 @@ def main():
 #    meting.place(x=100,y=50)
     #meting.pack()
 #    gui.addtab()
+    def callback():
+        if messagebox.askokcancel("Quit", "Do you really wish to quit?"):
+            root.destroy()
+            plt.close()
+    root.protocol("WM_DELETE_WINDOW", callback)
     root.mainloop()
 
 
