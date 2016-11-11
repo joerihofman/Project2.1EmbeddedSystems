@@ -22,6 +22,7 @@ if ports:
     ser.isOpen()
     time.sleep(2)
     def arduino(var):
+        #light functie.
         if var == 1:
             ser.write(bytes(b'%d') % var)
             raw = ser.read(size=2)
@@ -30,6 +31,7 @@ if ports:
                 val = high * 256 + low
                 val = 1023 - val
                 return(val)
+        #temperatuur functie.
         elif var == 2:
             ser.write(bytes(b'%d') % var)
             time.sleep(.1)
