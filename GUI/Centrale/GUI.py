@@ -177,6 +177,7 @@ def main():
             sluitknop = ttk.Button(nieuweframe,text='Sluit tabblad',command=nieuweframe.destroy)
             sluitknop.grid(row=14,column=2)
 
+            #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten
             def instellingvensterenknop():
                 instellingenvenster(a)
                 instellingenbordknop.state(["disabled"])
