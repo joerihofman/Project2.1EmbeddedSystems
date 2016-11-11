@@ -28,17 +28,53 @@ def test():
         print(try1)
         return try1
 
-def grafiek():
-    values = [1,3]
-    values2 = [8,3,5,7,2]
+def grafiekuur():
     plt.figure(1)
-    plt.ion()
     plt.subplot(211)
-    #plt.plot(metingen.testlist, 'r-')
-    plt.plot(values, 'r-')
+    plt.plot(metingen.listtemp, 'r-')
     plt.grid(True)
     plt.subplot(212)
-    plt.plot(values2, 'r-')
+    plt.plot(metingen.listlight, 'r-')
+    plt.grid(True)
+    plt.show()
+
+def grafiekdag():
+    plt.figure(1)
+    plt.subplot(211)
+    plt.plot(metingen.listtempuur, 'r-')
+    plt.grid(True)
+    plt.subplot(212)
+    #plt.plot(metingen., 'r-')
+    plt.grid(True)
+    plt.show()
+
+def grafiekweek():
+    plt.figure(1)
+    plt.subplot(211)
+    plt.plot(metingen.listtempdag, 'r-')
+    plt.grid(True)
+    plt.subplot(212)
+    #plt.plot(metingen., 'r-')
+    plt.grid(True)
+    plt.show()
+
+def grafiekmaand():
+    plt.figure(1)
+    plt.subplot(211)
+    plt.plot(metingen.listtempweek, 'r-')
+    plt.grid(True)
+    plt.subplot(212)
+    #plt.plot(metingen., 'r-')
+    plt.grid(True)
+    plt.show()
+
+def grafiekjaar():
+    plt.figure(1)
+    plt.subplot(211)
+    plt.plot(metingen.listtempmaand, 'r-')
+    plt.grid(True)
+    plt.subplot(212)
+    #plt.plot(metingen., 'r-')
     plt.grid(True)
     plt.show()
 
@@ -100,15 +136,15 @@ def main():
             bordgrafieklabel= ttk.Label(nieuweframe, text ='Grafiek')
             bordgrafieklabel.grid(row=5,column=1)
             #TODO: laat knoppen grafieken openen
-            uurknop= ttk.Button(nieuweframe,text='Uur')
+            uurknop= ttk.Button(nieuweframe,text='Uur', command = grafiekuur)
             uurknop.grid(row=6,column=0)
-            dagknop= ttk.Button(nieuweframe,text='Dag')
+            dagknop= ttk.Button(nieuweframe,text='Dag', command = grafiekdag)
             dagknop.grid(row=6,column=1)
-            weekknop= ttk.Button(nieuweframe,text='Week')
+            weekknop= ttk.Button(nieuweframe,text='Week', command = grafiekweek)
             weekknop.grid(row=6,column=2)
-            maandknop= ttk.Button(nieuweframe,text='Maand')
+            maandknop= ttk.Button(nieuweframe,text='Maand', command = grafiekmaand)
             maandknop.grid(row=7,column=0)
-            jaarknop= ttk.Button(nieuweframe, text='Jaar')
+            jaarknop= ttk.Button(nieuweframe, text='Jaar', command = grafiekjaar)
             jaarknop.grid(row=7,column=1)
             bordwhitespace2 = ttk.Label(nieuweframe)
             bordwhitespace2.grid(row=8,column=1)
@@ -143,8 +179,8 @@ def main():
     centraalframe = ttk.Frame(notebook, width=100, height=200)
     notebook.add(centraalframe, text='Centraal')
     notebook.pack()
-    testknop = ttk.Button(centraalframe, text = "grafiek", command=grafiek)
-    testknop.place(x=10,y=10)
+    #Grafiekknop = ttk.Button(centraalframe, text = "grafiek", command=grafiekminuut)
+    #Grafiekknop.place(x=10,y=10)
     centraallabel = ttk.Label(centraalframe,text= 'Centraal')
     centraallabel.grid(row = 1, column = 1 )
     whitespace1 = ttk.Label(centraalframe)

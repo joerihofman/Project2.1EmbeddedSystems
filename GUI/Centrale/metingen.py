@@ -43,7 +43,12 @@ if ports:
             return(val)
 
     timer = 0
+    #lijstjes voor de licht
     listlight = []
+    listlightuur = []
+    listlightdag = []
+    listlightweek = []
+    listlightmaand = []
     #lijstjes voor de temp
     listtemp = []
     listtempuur = []
@@ -57,8 +62,10 @@ if ports:
             timer += 1
             if timer% 2 == 0: #TODO verander dit naar 60 om elke 60 seconden waarden in een lijst te zetten.
                 lightvalue = arduino(1)
-                #tempvalue = arduino(2)
+                tempvalue = arduino(2)
+                listtemp.append(tempvalue)
                 listlight.append(lightvalue)
+                #If statements voor de temperatuur
                 if (len(listtemp) == 60):
                     x = sum(listtemp) / 60
                     listtempuur.append(x)
@@ -77,6 +84,26 @@ if ports:
                     del listtempweek[:]
                 if (len(listtempmaand) == 12):
                     del listtempmaand[:]
+
+                #If statements voor de licht
+                if (len(listlight) == 60):
+                    x = sum(listlight) / 60
+                    listlightuur.append(x)
+                    del listlight[:]
+                if (len(listlightuur) == 24):
+                    y = sum(listlightuur) / 24
+                    listlightdag.append(y)
+                    del listlightuur[:]
+                if (len(listlightdag) == 7):
+                    h = sum(listlightdag) / 7
+                    listlightweek.append(h)
+                    del listlightdag[:]
+                if (len(listlightweek) == 4):
+                    z = sum(listlightdag) / 4
+                    listlightmaand.append(z)
+                    del listlightweek[:]
+                if (len(listlightmaand) == 12):
+                    del listlightmaand[:]
                 #listtemp.append(tempvalue)
                 timer = 0
                 #print(listlight)
