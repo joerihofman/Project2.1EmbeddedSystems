@@ -5,7 +5,7 @@ pl.plot(values, 'r-', label='values')
 pl.show()
 
 #for loop tot 60
- #   stop dat in nieuwe lijst, lijst van uren.
+#stop dat in nieuwe lijst, lijst van uren.
 listtemp = []
 listtempuur = []
 listtempdag = []
