@@ -83,13 +83,12 @@ opvulling = 0
 
 def main():
 
-    instellingenvenster_list=[]
+    instellingenvenster_dict={}
 
     #maakt een instellingenvenster aan voor een bordje
-    #TODO: sluit het instellingenvenster als centraal wordt gesloten
     def instellingenvenster(nummer):
         instellingenvenstertje = Tk()
-        instellingenvenster_list.append(instellingenvenstertje)
+        instellingenvenster_dict.update({nummer : instellingenvenstertje})
         instellingenvenstertje.geometry("300x200+300+300")
         ivensterlabel = ttk.Label(instellingenvenstertje, text='Instellingen bord %d' % nummer)
         ivensterlabel.grid(row=0,column=1)
@@ -110,6 +109,12 @@ def main():
         i100cm.grid(row=4,column=1)
         ihelemaal= ttk.Button(instellingenvenstertje, text='Helemaal')
         ihelemaal.grid(row=4,column=2)
+
+        def isluit():
+
+            del instellingenvenster_dict[nummer]
+            instellingenvenstertje.destroy()
+        instellingenvenstertje.protocol("WM_DELETE_WINDOW", isluit)
     #maakt een tabblad aan voor een bordje
     def nieuwebordje():
         #todo: laat maar een tabblad per bord open kunnen laten gaan
@@ -165,10 +170,16 @@ def main():
             bordsep8.grid(row=11, column=1, sticky='ew')
             bordsep9 = ttk.Separator(nieuweframe, orient="horizontal")
             bordsep9.grid(row=11, column=2, sticky='ew')
-            instellingenbordknop = ttk.Button(nieuweframe,text='Instellingen Bordje',command=lambda: instellingenvenster(a))
+            instellingenbordknop = ttk.Button(nieuweframe,text='Instellingen Bordje',command=lambda: instellingvensterenknop())
             instellingenbordknop.grid(row=12,column=1)
             bordwhitespace3 = ttk.Label(nieuweframe)
             bordwhitespace3.grid(row=13,column=1)
+            sluitknop = ttk.Button(nieuweframe,text='Sluit tabblad',command=nieuweframe.destroy)
+            sluitknop.grid(row=14,column=2)
+
+            def instellingvensterenknop():
+                instellingenvenster(a)
+                instellingenbordknop.state(["disabled"])
 
 
 
@@ -257,7 +268,9 @@ def main():
     def vraag():
         if messagebox.askokcancel("Stoppen", "Weet je zeker dat je wilt stoppen?"):
             root.destroy()
-            for i in instellingenvenster_list: i.destroy()
+            for k,v in instellingenvenster_dict.items():
+
+                v.destroy()
             plt.close()
     root.protocol("WM_DELETE_WINDOW", vraag)
     root.mainloop()
