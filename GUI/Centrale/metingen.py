@@ -1,31 +1,16 @@
-import serial
-import serial.tools.list_ports
+from GUI.Arduino import arduinoaansluiten
 import time
 import collections
 
-ports = list(serial.tools.list_ports.comports())
-for p in ports:
-    comport = p[0][:5]
-
-aantalpoorten = len(ports)
-
-if ports:
-    def checkport():
-        try:
-            global comport
-            ser = serial.Serial(port=comport, baudrate=19200)
-            global ser
-        except serial.serialutil.SerialException:
-            print("geen comport gevonden")
-
-    checkport()
-
-    ser.isOpen()
+#def leesnieuweport():
+#    if
+"""
+    arduinoaansluiten.ser.isOpen()
     time.sleep(2)
     def arduino(var):
         #light functie.
         if var == 1:
-            ser.write(bytes(b'%d') % var)
+            arduinoaansluiten.ser.write(bytes(b'%d') % var)
             raw = ser.read(size=2)
             if raw:
                 high,low = raw
@@ -109,8 +94,9 @@ if ports:
                 #print(listtemp)
                 #if lightvalue < 500:
                 #    arduino(4)
-else:
-    pass
+    """
+#else:
+#    pass
 
 # while True:
 #     try:

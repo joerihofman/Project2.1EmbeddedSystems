@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-
 from GUI.Centrale import metingen
+from GUI.Arduino import arduinoaansluiten
 import matplotlib.pyplot as plt
 
 class GUI(Frame):
@@ -82,8 +82,8 @@ def grafiekjaar():
 opvulling = 0
 
 def main():
-
     instellingenvenster_dict={}
+#    arduinoaansluiten.checkport()
 
     #maakt een instellingenvenster aan voor een bordje
     def instellingenvenster(nummer):
@@ -118,7 +118,12 @@ def main():
     #maakt een tabblad aan voor een bordje
     def nieuwebordje():
         #todo: laat maar een tabblad per bord open kunnen laten gaan
-        for i in range(metingen.aantalpoorten):
+        nieuwbordjetab()
+#        arduinoaansluiten.checkport()
+
+
+    def nieuwbordjetab():
+        for i in range(arduinoaansluiten.aantalpoorten):
             a = i + 1
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(nieuweframe, text='Bord %d' % a)
@@ -209,7 +214,7 @@ def main():
     sep2.grid(row=3, column=2, sticky='ew')
     sep3 = ttk.Separator(centraalframe, orient="horizontal")
     sep3.grid(row=3, column=0, sticky='ew')
-    centraalbordenaan = ttk.Label(centraalframe, text='Aantal borden aan: %d' % metingen.aantalpoorten)
+    centraalbordenaan = ttk.Label(centraalframe, text='Aantal borden aan: %d' % arduinoaansluiten.aantalpoorten)
     centraalbordenaan.grid(row=4, column=1)
     whitespace2 = ttk.Label(centraalframe)
     whitespace2.grid(row=5,column=1)
@@ -267,8 +272,6 @@ def main():
     nieuwbordknop.grid(row=19,column=1)
     whitespace9 = ttk.Label(centraalframe)
     whitespace9.grid(row=20,column=1)
-
-
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
     #meting.pack()
