@@ -1,6 +1,7 @@
 import serial
 import serial.tools.list_ports
 import time
+import collections
 
 ports = list(serial.tools.list_ports.comports())
 for p in ports:
@@ -44,17 +45,17 @@ if ports:
 
     timer = 0
     #lijstjes voor de licht
-    listlight = []
-    listlightuur = []
-    listlightdag = []
-    listlightweek = []
-    listlightmaand = []
+    listlight = collections.deque(maxlen=60)
+    listlightuur = collections.deque(maxlen=24)
+    listlightdag = collections.deque(maxlen=7)
+    listlightweek = collections.deque(maxlen=4)
+    listlightmaand = collections.deque(maxlen=12)
     #lijstjes voor de temp
-    listtemp = []
-    listtempuur = []
-    listtempdag = []
-    listtempweek = []
-    listtempmaand = []
+    listtemp = collections.deque(maxlen=60)
+    listtempuur = collections.deque(maxlen=24)
+    listtempdag = collections.deque(maxlen=7)
+    listtempweek = collections.deque(maxlen=4)
+    listtempmaand = collections.deque(maxlen=12)
     def whileloop():
         while True:
             global timer
@@ -69,39 +70,34 @@ if ports:
                 if (len(listtemp) == 60):
                     x = sum(listtemp) / 60
                     listtempuur.append(x)
-                    del listtemp[:]
+                    #voor %60 begin je opnieuw, de restwaarde moet de index,positie in lijst, geven van de lijst
+                    #waar op die positie de meting wordt vervangen
+                    # 68 % 60 = 8 > index = 8
+                    # 119 % 60 = 59 > index = 59
                 if (len(listtempuur) == 24):
                     y = sum(listtempuur) / 24
                     listtempdag.append(y)
-                    del listtempuur[:]
                 if (len(listtempdag) == 7):
                     h = sum(listtempdag) / 7
                     listtempweek.append(h)
-                    del listtempdag[:]
                 if (len(listtempweek) == 4):
                     z = sum(listtempdag) / 4
                     listtempmaand.append(z)
-                    del listtempweek[:]
                 if (len(listtempmaand) == 12):
                     del listtempmaand[:]
-
                 #If statements voor de licht
                 if (len(listlight) == 60):
-                    x = sum(listlight) / 60
-                    listlightuur.append(x)
-                    del listlight[:]
+                    a = sum(listlight) / 60
+                    listlightuur.append(a)
                 if (len(listlightuur) == 24):
-                    y = sum(listlightuur) / 24
-                    listlightdag.append(y)
-                    del listlightuur[:]
+                    b = sum(listlightuur) / 24
+                    listlightdag.append(b)
                 if (len(listlightdag) == 7):
-                    h = sum(listlightdag) / 7
-                    listlightweek.append(h)
-                    del listlightdag[:]
+                    c = sum(listlightdag) / 7
+                    listlightweek.append(c)
                 if (len(listlightweek) == 4):
-                    z = sum(listlightdag) / 4
-                    listlightmaand.append(z)
-                    del listlightweek[:]
+                    d = sum(listlightdag) / 4
+                    listlightmaand.append(d)
                 if (len(listlightmaand) == 12):
                     del listlightmaand[:]
                 #listtemp.append(tempvalue)
