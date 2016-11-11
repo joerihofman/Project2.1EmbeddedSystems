@@ -186,6 +186,12 @@ def main():
 
     root = Tk()
 
+    maxrol= 150
+    maxtemp= 25
+
+    def setmaxtemp(waarde):
+        main.maxtemp = waarde
+
     root.geometry("600x450+300+300")
     notebook = ttk.Notebook(root)
     centraalframe = ttk.Frame(notebook, width=100, height=200)
@@ -215,21 +221,20 @@ def main():
     sep6.grid(row=6, column=0, sticky='ew')
     whitespace3 = ttk.Label(centraalframe)
     whitespace3.grid(row=7,column=1)
-    maxitemplabel = ttk.Label(centraalframe, text ='Maximale temperatuur: %d' % opvulling) #TODO: opvulling veranderen
+    maxitemplabel = ttk.Label(centraalframe, text ='Maximale temperatuur(°C): %d' % opvulling) #TODO: opvulling veranderen
     maxitemplabel.grid(row = 8, column = 0)
-    maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte: %d' % opvulling)
+    maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte(CM): %d' % opvulling)
     maxirollabel.grid(row = 8, column = 2)
-    maxitempbox = ttk.Combobox(centraalframe)
+    maxitempbox = Entry(centraalframe)
     maxitempbox.grid(row = 9, column =0)
-    maxirolbox = ttk.Combobox(centraalframe)
+    maxirolbox = OptionMenu(centraalframe, maxrol, 50, 100, 150)
     maxirolbox.grid(row = 9, column =2)
     whitespace4 = ttk.Label(centraalframe)
     whitespace4.grid(row=10,column=1)
-    #TODO: leegmaken
-    leegmakenknop = ttk.Button(centraalframe,text='Leegmaken')
+    leegmakenknop = ttk.Button(centraalframe,text='Leegmaken',command=lambda:maxitempbox.set(''))
     leegmakenknop.grid(row = 11, column = 0)
     #TODO: accepteren
-    accepterenknop = ttk.Button(centraalframe,text='Accepteren')
+    accepterenknop = ttk.Button(centraalframe,text='Accepteren',command = setmaxtemp(maxitempbox.get()))
     accepterenknop.grid(row=11,column=2)
     whitespace5 = ttk.Label(centraalframe)
     whitespace5.grid(row=12,column=1)
@@ -262,6 +267,8 @@ def main():
     nieuwbordknop.grid(row=19,column=1)
     whitespace9 = ttk.Label(centraalframe)
     whitespace9.grid(row=20,column=1)
+
+
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
     #meting.pack()
