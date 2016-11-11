@@ -46,6 +46,7 @@ if ports:
             return(val)
 
     timer = 0
+    #test
     #lijstjes voor de licht
     listlight = collections.deque(maxlen=60)
     listlightuur = collections.deque(maxlen=24)
