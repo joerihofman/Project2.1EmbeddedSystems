@@ -2,16 +2,14 @@ from GUI.Arduino import arduinoaansluiten
 import time
 import collections
 
-#def leesnieuweport():
-#    if
-"""
-    arduinoaansluiten.ser.isOpen()
+def leesnieuweport():
+#    arduinoaansluiten.checkport().ser.isOpen()
     time.sleep(2)
     def arduino(var):
         #light functie.
         if var == 1:
-            arduinoaansluiten.ser.write(bytes(b'%d') % var)
-            raw = ser.read(size=2)
+            arduinoaansluiten.checkport().uer.write(bytes(b'%d') % var)
+            raw = arduinoaansluiten.checkport().ser.read(size=2)
             if raw:
                 high,low = raw
                 val = high * 256 + low
@@ -19,15 +17,15 @@ import collections
                 return(val)
         #temperatuur functie.
         elif var == 2:
-            ser.write(bytes(b'%d') % var)
+            arduinoaansluiten.checkport().ser.write(bytes(b'%d') % var)
             time.sleep(.1)
-            s = int.from_bytes(ser.read(size=1), byteorder='big')
+            s = int.from_bytes(arduinoaansluiten.checkport().ser.read(size=1), byteorder='big')
             val = round((float((s*5)/1024.0)-0.5)*100,2) #berekening voor de temp value
             return(val)
         else:
-            ser.write(bytes(b'%d') % var)
+            arduinoaansluiten.checkport().ser.write(bytes(b'%d') % var)
             time.sleep(.1)
-            val = int.from_bytes(ser.read(),byteorder='big')
+            val = int.from_bytes(arduinoaansluiten.checkport().ser.read(),byteorder='big')
             return(val)
 
     timer = 0
@@ -94,7 +92,6 @@ import collections
                 #print(listtemp)
                 #if lightvalue < 500:
                 #    arduino(4)
-    """
 #else:
 #    pass
 

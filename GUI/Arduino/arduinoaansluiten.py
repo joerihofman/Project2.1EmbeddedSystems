@@ -1,8 +1,9 @@
+"""
 import serial
 import serial.tools.list_ports
 
 ports = list(serial.tools.list_ports.comports())
-print("lees nieuwe poort")
+print("lees nieuwe poort1")
 portsdict = {}
 for p in ports:
     portsdict[ports.index(p)] = str(p)
@@ -24,7 +25,7 @@ def checkport():
         ser = serial.Serial(port=poortstrip, baudrate=19200)
         print(ser)
         global ser
-"""
+
 def checkport():
     if poortstrip:
         ser = serial.Serial(port=poortstrip, baudrate=19200)
@@ -33,4 +34,4 @@ def checkport():
     else:
         print("geen comports")
 """
-checkport()
+#checkport()

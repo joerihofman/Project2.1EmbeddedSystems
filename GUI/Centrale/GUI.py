@@ -1,9 +1,12 @@
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
-from GUI.Centrale import metingen
-from GUI.Arduino import arduinoaansluiten
+from tkinter import ttk
+
 import matplotlib.pyplot as plt
+
+from GUI.Arduino import python
+from GUI.Centrale import metingen
+
 
 class GUI(Frame):
     def __init__(self, parent):
@@ -83,7 +86,6 @@ opvulling = 0
 
 def main():
     instellingenvenster_dict={}
-#    arduinoaansluiten.checkport()
 
     #maakt een instellingenvenster aan voor een bordje
     def instellingenvenster(nummer):
@@ -116,14 +118,16 @@ def main():
             instellingenvenstertje.destroy()
         instellingenvenstertje.protocol("WM_DELETE_WINDOW", isluit)
     #maakt een tabblad aan voor een bordje
-    def nieuwebordje():
+
+#    def nieuwebordje():
         #todo: laat maar een tabblad per bord open kunnen laten gaan
-        nieuwbordjetab()
-#        arduinoaansluiten.checkport()
+#        nieuwbordjetab()
+#        metingen.leesnieuweport()
 
 
     def nieuwbordjetab():
-        for i in range(arduinoaansluiten.aantalpoorten):
+        arduino = python.Arduino.scan()
+        for i in range(len(python.Arduino.arduinos)):
             a = i + 1
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(nieuweframe, text='Bord %d' % a)
@@ -214,7 +218,7 @@ def main():
     sep2.grid(row=3, column=2, sticky='ew')
     sep3 = ttk.Separator(centraalframe, orient="horizontal")
     sep3.grid(row=3, column=0, sticky='ew')
-    centraalbordenaan = ttk.Label(centraalframe, text='Aantal borden aan: %d' % arduinoaansluiten.aantalpoorten)
+    centraalbordenaan = ttk.Label(centraalframe, text='Aantal borden aan: %d' % python.Arduino.ardcount)
     centraalbordenaan.grid(row=4, column=1)
     whitespace2 = ttk.Label(centraalframe)
     whitespace2.grid(row=5,column=1)
@@ -268,13 +272,13 @@ def main():
     whitespace8 = ttk.Label(centraalframe)
     whitespace8.grid(row=18,column=1)
     #TODO: Nieuw bordje aansluiten
-    nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten',command=nieuwebordje)
+    nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten',command=nieuwbordjetab)
     nieuwbordknop.grid(row=19,column=1)
     whitespace9 = ttk.Label(centraalframe)
     whitespace9.grid(row=20,column=1)
 #    meting = Label(root,textvariable=test())
 #    meting.place(x=100,y=50)
-    #meting.pack()
+#    meting.pack()
 #    gui.addtab()
     def vraag():
         if messagebox.askokcancel("Stoppen", "Weet je zeker dat je wilt stoppen?"):
