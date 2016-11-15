@@ -21,27 +21,48 @@ class Arduino:
         portlist = list(serial.tools.list_ports.comports())
         for p in portlist:
             portsdict[portlist.index(p)] = str(p)
-            print("portsdict2", portsdict)
+            print("portsdict", portsdict)
+            for k,v in portsdict.items():
+                if v in Arduino.arduinos:
+                    print("niks gevonden")
+                    pass
+                else:
+                    print("iets gevonden")
+                    nieuw.append(v)
+            for i in nieuw:
+                strip = i[0:4]
+                Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
+                Arduino.ardcount+=1
+            print("nieuw: ",nieuw)
+        """
+        for p in portlist:
+            portsdict[portlist.index(p)] = str(p)
+            print("portsdict", portsdict)
         for key,value in portsdict.items():
             port = portsdict[key]
+#            print("port", port)
             strip = port[0:4]
             print("strip: ", strip)
-            for k,v in Arduino.arduinos:
-                if v == (strip):
+#            values = [v for k,v in Arduino.arduinos.items() if value in v]
+            for k,v in portsdict.items():
+#                for ka, va in Arduino.arduinos.items():
+                if v in Arduino.arduinos:
                     print("niks gevonden")
                     pass
                 else:
                     nieuw.append(strip)
                     print("iets gevonden")
-            for v in nieuw:
-                Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
-                nieuw.append(Arduino.arduinos[Arduino.ardcount])
-                Arduino.ardcount+=1
+                for i in nieuw:
+                    Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
+                    nieuw.append(Arduino.arduinos[Arduino.ardcount])
+                    Arduino.ardcount+=1
+        """
+        print("arduino's: ",Arduino.arduinos)
 
     def __init__(self, nummer, poort):
         self.nummer = nummer
         self.poort = poort
-        self.serial = serial.Serial(port=poort, baudrate=19200)
+#        self.serial = serial.Serial(port=poort, baudrate=19200)
         print(self.nummer)
         print(self.poort)
 
