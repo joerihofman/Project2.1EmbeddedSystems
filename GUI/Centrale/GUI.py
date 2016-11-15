@@ -161,7 +161,7 @@ def main():
             self.instellingenvenstertje.destroy()
 
     #maakt een tabblad aan voor een bordje
-
+#oeuoeu
 #    def nieuwebordje():
 #        nieuwbordjetab()
 #        metingen.leesnieuweport()
