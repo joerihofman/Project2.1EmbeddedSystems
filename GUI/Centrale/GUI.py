@@ -128,11 +128,11 @@ def main():
     #maakt een instellingenvenster aan voor een bordje
     class instellingenvenster:
 
-        def __init__(self,welkearduino):
+        def __init__(self,welkearduino,Arduinotab):
             self.welkearduino = welkearduino
             self.nummer = (1 + int(python.Arduino.get(self.welkearduino).nummer))
             self.instellingenvenstertje = Tk()
-            self.instellingenvenster_dict.update({self.nummer : self.instellingenvenstertje})
+            instellingenvenster_dict.update({self.nummer : self.instellingenvenstertje})
             self.instellingenvenstertje.geometry("300x200+300+300")
             self.ivensterlabel = ttk.Label(self.instellingenvenstertje, text='Instellingen bord %d' % self.nummer)
             self.ivensterlabel.grid(row=0,column=1)
@@ -153,12 +153,15 @@ def main():
             self.i100cm.grid(row=4,column=1)
             self.ihelemaal= ttk.Button(self.instellingenvenstertje, text='Helemaal')
             self.ihelemaal.grid(row=4,column=2)
-            self.instellingenvenstertje.protocol("WM_DELETE_WINDOW", isluit)
 
-        def isluit(self):
 
-            del instellingenvenster_dict[self.nummer]
-            self.instellingenvenstertje.destroy()
+            def isluit(self):
+
+                del instellingenvenster_dict[self.nummer]
+                self.instellingenvenstertje.destroy()
+                Arduinotab.instellingenbordknop.state(["!disabled"])
+
+            self.instellingenvenstertje.protocol("WM_DELETE_WINDOW", lambda:isluit(self))
 
     #maakt een tabblad aan voor een bordje
 #oeuoeu
@@ -246,7 +249,7 @@ def main():
 
             #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten
             def instellingvensterenknop(self):
-                instellingenvenster(self.welkearduino)
+                instellingenvenster(self.welkearduino,self)
                 self.instellingenbordknop.state(["disabled"])
 
 
