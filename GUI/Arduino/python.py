@@ -42,15 +42,15 @@ class Arduino:
 #            print(a)
 #            print(type(a))
         for i in nieuw:
-            a = nieuw.index(i)
-            print("a", a)
+#            a = nieuw.index(i)
+#            print("a", a)
 #                print("b", b)
 #                for key,val in portsdict.items():
 #                    portstr = portsdict[key]
 #            x = 0
-##                Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, x)
-            Arduino(Arduino.ardcount, i)
-            Arduino.ardcount+=1
+           Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, port)
+#            Arduino(Arduino.ardcount, port)
+           Arduino.ardcount+=1
         print("nieuw: ",nieuw)
         nieuw.clear()
         print("arduino's: ",Arduino.arduinos)
@@ -81,13 +81,14 @@ class Arduino:
     def __init__(self, nummer, poort):
         self.nummer = nummer
         self.poort = poort
-        self.serial = serial.Serial(port=poort, baudrate=19200)
+        self.serial = serial.Serial(port=poort[0:4], baudrate=19200)
+        self.serial.isOpen()
         print(self.nummer)
         print(self.poort)
-        Arduino.arduinos[nummer] = (poort)
+#        Arduino.arduinos[nummer] = (poort)
 
     def commandosturen(self, commando):
-        metingen.stuurcomando(self.poort, commando)
+        metingen.stuurcomando(Arduino.arduinos[self.nummer], commando)
 
 
 

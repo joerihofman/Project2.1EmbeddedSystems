@@ -1,31 +1,32 @@
 from GUI.Arduino import arduinoaansluiten
+import serial
 import time
 import collections
 
-def stuurcomando(poort, var):
-#    arduinoaansluiten.checkport().ser.isOpen()
-#    time.sleep(2)
+def stuurcomando(poort, commando):
+    print("poort:", poort, " commando:", commando)
 #    def arduino(var):
         #light functie.
-    if var == 1:
-        poort.uer.write(bytes(b'%d') % var)
-        raw = poort.ser.read(size=2)
+    if commando == 1:
+        poort.serial.write(bytes(b'%d') % commando)
+        raw = poort.serial.read(size=2)
         if raw:
             high,low = raw
             val = high * 256 + low
             val = 1023 - val
             return(val)
     #temperatuur functie.
-    elif var == 2:
-        poort.ser.write(bytes(b'%d') % var)
+    elif commando == 2:
+        poort.serial.write(bytes(b'%d') % commando)
         time.sleep(.1)
-        s = int.from_bytes(poort.ser.read(size=1), byteorder='big')
+        s = int.from_bytes(poort.serial.read(size=1), byteorder='big')
         val = round((float((s*5)/1024.0)-0.5)*100,2) #berekening voor de temp value
         return(val)
     else:
-        poort.ser.write(bytes(b'%d') % var)
+        print("test")
+        poort.serial.write(bytes(b'%d') % commando)
         time.sleep(.1)
-        val = int.from_bytes(poort.ser.read(),byteorder='big')
+        val = int.from_bytes(poort.serial.read(),byteorder='big')
         return(val)
 
     timer = 0

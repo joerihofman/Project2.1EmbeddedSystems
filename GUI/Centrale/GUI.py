@@ -175,7 +175,7 @@ def main():
 #            Arduinotab(python.Arduino.get(i).nummer)
 
     def stuurcommando(welke, commando):
-        python.Arduino.get(welke).commandosturen(3)
+        python.Arduino.get(welke).commandosturen(commando)
 
     class Arduinotab:
 
