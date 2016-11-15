@@ -51,43 +51,43 @@ def whileloop():
     timer += 1
     print('test')
     if timer% 60 == 0:
-            lightvalue = stuurcomando(COMPOORT,1)
-            tempvalue = stuurcomando(COMPOORT,2)
-            listtemp.append(tempvalue)
-            listlight.append(lightvalue)
-            #If statements voor de temperatuur
-            if (len(listtemp) == 60):
-                x = sum(listtemp) / 60
-                listtempuur.append(x)
-           if (len(listtempuur) == 24):
-                y = sum(listtempuur) / 24
-                listtempdag.append(y)
-            if (len(listtempdag) == 7):
-                h = sum(listtempdag) / 7
-                listtempweek.append(h)
-            if (len(listtempweek) == 4):
-                z = sum(listtempdag) / 4
-                listtempmaand.append(z)
-            if (len(listtempmaand) == 12):
-                del listtempmaand[:]
-            #If statements voor de licht
-            if (len(listlight) == 60):
-                a = sum(listlight) / 60
-                listlightuur.append(a)
-            if (len(listlightuur) == 24):
-                b = sum(listlightuur) / 24
-                listlightdag.append(b)
-            if (len(listlightdag) == 7):
-                c = sum(listlightdag) / 7
-                listlightweek.append(c)
-            if (len(listlightweek) == 4):
-                d = sum(listlightdag) / 4
-                listlightmaand.append(d)
-            if (len(listlightmaand) == 12):
-                del listlightmaand[:]
-            #listtemp.append(tempvalue)
-            timer = 0
-            #print(listlight)
-            #print(listtemp)
-            #if lightvalue < 500:
-            #    arduino(4)
+        lightvalue = stuurcomando(COMPOORT,1)
+        tempvalue = stuurcomando(COMPOORT,2)
+        listtemp.append(tempvalue)
+        listlight.append(lightvalue)
+        #If statements voor de temperatuur
+        if (len(listtemp) == 60):
+            x = sum(listtemp) / 60
+            listtempuur.append(x)
+        if (len(listtempuur) == 24):
+            y = sum(listtempuur) / 24
+            listtempdag.append(y)
+        if (len(listtempdag) == 7):
+            h = sum(listtempdag) / 7
+            listtempweek.append(h)
+        if (len(listtempweek) == 4):
+            z = sum(listtempdag) / 4
+            listtempmaand.append(z)
+        if (len(listtempmaand) == 12):
+            del listtempmaand[:]
+        #If statements voor de licht
+        if (len(listlight) == 60):
+            a = sum(listlight) / 60
+            listlightuur.append(a)
+        if (len(listlightuur) == 24):
+            b = sum(listlightuur) / 24
+            listlightdag.append(b)
+        if (len(listlightdag) == 7):
+            c = sum(listlightdag) / 7
+            listlightweek.append(c)
+        if (len(listlightweek) == 4):
+            d = sum(listlightdag) / 4
+            listlightmaand.append(d)
+        if (len(listlightmaand) == 12):
+            del listlightmaand[:]
+        #listtemp.append(tempvalue)
+        timer = 0
+        #print(listlight)
+        #print(listtemp)
+        #if lightvalue < 500:
+        #    arduino(4)
