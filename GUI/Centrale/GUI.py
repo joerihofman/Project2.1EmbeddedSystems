@@ -142,6 +142,7 @@ def main():
             self.welkearduino = welkearduino
             self.nummer = (1 + int(python.Arduino.get(self.welkearduino).nummer))
             self.instellingenvenstertje = Tk()
+            self.instellingenvenstertje.wm_title('Instellingen')
             instellingenvenster_dict.update({self.nummer : self.instellingenvenstertje})
             self.instellingenvenstertje.geometry("300x200+300+300")
             self.ivensterlabel = ttk.Label(self.instellingenvenstertje, text='Instellingen bord %d' % self.nummer)
@@ -289,6 +290,7 @@ def main():
 
 
     root = Tk()
+    root.wm_title('Centraal')
 
     maxrol= 150
     maxtemp= 25
