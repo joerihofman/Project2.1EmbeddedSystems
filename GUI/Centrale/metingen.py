@@ -1,8 +1,9 @@
 import serial
 import time
 import collections
+import random
 
-def stuurcomando(poort, commando):
+def stuurcommando(poort, commando):
     print("poort:", poort, " commando:", commando)
 #    def arduino(var):
         #light functie.
@@ -33,12 +34,18 @@ def stuurcomando(poort, commando):
 timer = 0
 #lijstjes voor de licht
 listlight = collections.deque(maxlen=60)
+for j in range(60):
+    waarde2 = random.randint(300, 800)
+    listlight.append(waarde2)
 listlightuur = collections.deque(maxlen=24)
 listlightdag = collections.deque(maxlen=7)
 listlightweek = collections.deque(maxlen=4)
 listlightmaand = collections.deque(maxlen=12)
 #lijstjes voor de temp
 listtemp = collections.deque(maxlen=60)
+for i in range(60):
+    waarde = random.randint(18, 22)
+    listtemp.append(waarde)
 listtempuur = collections.deque(maxlen=24)
 listtempdag = collections.deque(maxlen=7)
 listtempweek = collections.deque(maxlen=4)
