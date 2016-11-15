@@ -20,16 +20,16 @@ def stuurcomando(poort, commando):
         poort.write(bytes(b'%d') % commando)
         time.sleep(.1)
         s = int.from_bytes(poort.read(size=1), byteorder='big')
-        val = round((float((s*5)/1024.0)-0.5)*100,2) #berekening voor de temp value
+        val = round((float((s*5)/1024.0)-0.5)*100, 2) #berekening voor de temp value
         return(val)
     else:
         print("test")
         poort.write(bytes(b'%d') % commando)
         print("test2jwzboi")
         time.sleep(.1)
-        val = int.from_bytes(poort.read(),byteorder='big')
+        val = int.from_bytes(poort.read(), byteorder='big')
         print(val)
-#        return(val)
+        return val
 
 timer = 0
 #lijstjes voor de licht
@@ -59,11 +59,7 @@ def whileloop():
             if (len(listtemp) == 60):
                 x = sum(listtemp) / 60
                 listtempuur.append(x)
-                #voor %60 begin je opnieuw, de restwaarde moet de index,positie in lijst, geven van de lijst
-                #waar op die positie de meting wordt vervangen
-                # 68 % 60 = 8 > index = 8
-                # 119 % 60 = 59 > index = 59
-            if (len(listtempuur) == 24):
+           if (len(listtempuur) == 24):
                 y = sum(listtempuur) / 24
                 listtempdag.append(y)
             if (len(listtempdag) == 7):

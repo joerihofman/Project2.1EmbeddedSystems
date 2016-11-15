@@ -68,7 +68,8 @@ class Arduino:
 #        Arduino.arduinos[nummer] = (poort)
 
     def commandosturen(self, commando):
-        metingen.stuurcomando(Arduino.arduinos[self.nummer].serials, commando)
+        return metingen.stuurcomando(Arduino.arduinos[self.nummer].serials, commando)
+
 
     def openserial(self):
         print("het is gelukt denk ik",self.serials, self.nummer)

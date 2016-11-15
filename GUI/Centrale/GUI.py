@@ -207,7 +207,7 @@ def main():
 #            Arduinotab(python.Arduino.get(i).nummer)
 
     def stuurcommando(welke, commando):
-        python.Arduino.get(welke).commandosturen(commando)
+        return python.Arduino.get(welke).commandosturen(commando)
 
     def comportopzetten(welke):
         python.Arduino.get(welke).openserial()
@@ -235,12 +235,31 @@ def main():
             self.borduitgeroldlabel1 = ttk.Label(self.nieuweframe, text ='Uitgerold:')
             self.borduitgeroldlabel1.grid(row=2,column=1)
             #TODO: geef door of bord is uitgerold of niet
-            self.borduitgeroldlabel2 = ttk.Label(self.nieuweframe, text ='Ja/Nee')
-            self.borduitgeroldlabel2.grid(row=3,column=1)
+            #self.borduitgeroldlabel2 = ttk.Label(self.nieuweframe, text ='Ja/Nee')
+            #self.borduitgeroldlabel2.grid(row=3,column=1)
             self.bordwhitespace1= ttk.Label(self.nieuweframe)
             self.bordwhitespace1.grid(row=4,column=1)
             self.bordgrafieklabel= ttk.Label(self.nieuweframe, text ='Grafiek')
             self.bordgrafieklabel.grid(row=5,column=1)
+            def statusopvragen(self):
+      #          stuurcommando(self.welkearduino, 5)
+                resultaat = stuurcommando(self.welkearduino, 5)
+                print(resultaat)
+                self.window = Tk()
+                self.window.wm_title("Status")
+                self.label = ttk.Label(self.window, text="")
+                self.label.grid(row=1, column=1)
+                if resultaat == 3:
+                    self.label = ttk.Label(self.window, text = "Rolluik is omhoog")
+                    self.label.grid(row=1,column=1)
+                elif resultaat == 4:
+                    self.label = ttk.Label(self.window, text = "Rolluik is omlaag")
+                    self.label.grid(row=1,column=1)
+                else:
+                    self.label = ttk.Label(self.window, text = "Geen status gevonden")
+                    self.label.grid(row=1,column=1)
+            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command =lambda: statusopvragen(self))
+            self.statusknop.grid(row=3, column = 1)
 #            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command = statusopvragen)
 #            self.statusknop.grid(row=3, column = 1)
             self.uurknop= ttk.Button(self.nieuweframe,text='Uur', command = grafiekuur)
@@ -287,6 +306,7 @@ def main():
             def instellingvensterenknop(self):
                 instellingenvenster(self.welkearduino,self)
                 self.instellingenbordknop.state(["disabled"])
+
 
 
     root = Tk()
@@ -344,6 +364,8 @@ def main():
     leegmakenknop = ttk.Button(centraalframe,text='Leegmaken',command=lambda: maxitempbox.delete(0, 'end'))
     leegmakenknop.grid(row = 11, column = 0)
     #TODO: accepteren
+    #accepterenknop = ttk.Button(centraalframe,text='Accepteren',command = setmaxtemp(maxitempbox.get()))
+    #accepterenknop.grid(row=11,column=2)
 #    accepterenknop = ttk.Button(centraalframe,text='Accepteren',command = setmaxtemp(maxitempbox.get()))
 #    accepterenknop.grid(row=11,column=2)
     whitespace5 = ttk.Label(centraalframe)
