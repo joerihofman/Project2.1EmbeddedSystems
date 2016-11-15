@@ -339,7 +339,7 @@ def main():
     maxirolbox.grid(row = 9, column =2)
     whitespace4 = ttk.Label(centraalframe)
     whitespace4.grid(row=10,column=1)
-    leegmakenknop = ttk.Button(centraalframe,text='Leegmaken',command=lambda:maxitempbox.set(''))
+    leegmakenknop = ttk.Button(centraalframe,text='Leegmaken',command=lambda: maxitempbox.delete(0, 'end'))
     leegmakenknop.grid(row = 11, column = 0)
     #TODO: accepteren
 #    accepterenknop = ttk.Button(centraalframe,text='Accepteren',command = setmaxtemp(maxitempbox.get()))
