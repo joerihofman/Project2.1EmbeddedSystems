@@ -329,9 +329,9 @@ def main():
     sep6.grid(row=6, column=0, sticky='ew')
     whitespace3 = ttk.Label(centraalframe)
     whitespace3.grid(row=7,column=1)
-    maxitemplabel = ttk.Label(centraalframe, text ='Maximale temperatuur(°C): %d' % opvulling) #TODO: opvulling veranderen
+    maxitemplabel = ttk.Label(centraalframe, text ='Maximale temperatuur(°C)')
     maxitemplabel.grid(row = 8, column = 0)
-    maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte(CM): %d' % opvulling)
+    maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte(CM)')
     maxirollabel.grid(row = 8, column = 2)
     maxitempbox = Entry(centraalframe)
     maxitempbox.grid(row = 9, column =0)
