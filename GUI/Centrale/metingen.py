@@ -1,4 +1,3 @@
-from GUI.Arduino import arduinoaansluiten
 import serial
 import time
 import collections
@@ -30,7 +29,7 @@ def stuurcomando(poort, commando):
         val = int.from_bytes(poort.read(), byteorder='big')
         print(val)
         return val
-
+#aoeoa
 timer = 0
 #lijstjes voor de licht
 listlight = collections.deque(maxlen=60)
