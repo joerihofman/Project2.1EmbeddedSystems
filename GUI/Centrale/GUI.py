@@ -147,11 +147,25 @@ def main():
             self.iuitrollengte = ttk.Label(self.instellingenvenstertje, text='Uitrollengte: ')
             self.iuitrollengte.grid(row=3,column=1)
             #TODO: laat knoppen de uitrollengte van het bord instellen
-            self.i50cm = ttk.Button(self.instellingenvenstertje, text='50 cm')
+
+            def set50cm(self):
+                stuurcommando(self.welkearduino, 7)
+                isluit(self)
+
+            def set100cm(self):
+                stuurcommando(self.welkearduino, 8)
+                isluit(self)
+
+            def set150cm(self):
+                stuurcommando(self.welkearduino, 9)
+                isluit(self)
+
+
+            self.i50cm = ttk.Button(self.instellingenvenstertje, text='50 cm', command= lambda: set50cm(self))
             self.i50cm.grid(row=4,column=0)
-            self.i100cm = ttk.Button(self.instellingenvenstertje, text='100 cm')
+            self.i100cm = ttk.Button(self.instellingenvenstertje, text='100 cm', command= lambda: set100cm(self))
             self.i100cm.grid(row=4,column=1)
-            self.ihelemaal= ttk.Button(self.instellingenvenstertje, text='Helemaal')
+            self.ihelemaal= ttk.Button(self.instellingenvenstertje, text='Helemaal', command= lambda: set150cm(self))
             self.ihelemaal.grid(row=4,column=2)
 
 
@@ -160,6 +174,10 @@ def main():
                 del instellingenvenster_dict[self.nummer]
                 self.instellingenvenstertje.destroy()
                 Arduinotab.instellingenbordknop.state(["!disabled"])
+
+
+
+
 
             self.instellingenvenstertje.protocol("WM_DELETE_WINDOW", lambda:isluit(self))
 
