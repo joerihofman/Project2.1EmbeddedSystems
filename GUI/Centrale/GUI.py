@@ -124,10 +124,13 @@ def main():
 #        nieuwbordjetab()
 #        metingen.leesnieuweport()
 
-
+"""
     def nieuwbordjetab():
         arduino = python.Arduino.scan()
-        for i in range(len(python.Arduino.arduinos)):
+#        for i in range(len(python.Arduino.arduinos)):
+#            welkearduino = python.Arduino.arduinos[i]
+        for i in python.Arduino.arduinos:
+            welkearduino = python.Arduino.get(i).poort
             a = i + 1
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(nieuweframe, text='Bord %d' % a)
@@ -185,12 +188,14 @@ def main():
             bordwhitespace3.grid(row=13,column=1)
             sluitknop = ttk.Button(nieuweframe,text='Sluit tabblad',command=nieuweframe.destroy)
             sluitknop.grid(row=14,column=2)
+            welkearduinoisdit = ttk.Label(nieuweframe, text="ard:{} ".format(welkearduino))
+            welkearduinoisdit.grid(row=16, column=2)
 
             #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten
             def instellingvensterenknop():
                 instellingenvenster(a)
                 instellingenbordknop.state(["disabled"])
-
+"""
 
 
     root = Tk()

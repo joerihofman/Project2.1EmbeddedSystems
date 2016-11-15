@@ -1,11 +1,16 @@
 import serial
 import serial.tools.list_ports
-#Hij moet zelf de poort zoeken
-#Hij moet zelf een nieuwe arduino uit de lijst zoeken
 
 class Arduino:
     arduinos = {}
     ardcount = 0
+
+    @classmethod
+    def get(cls, nr):
+        if cls.arduinos[nr]:
+            return cls.arduinos[nr]
+        else:
+            return None
 
     @classmethod
     def scan(cls):
@@ -30,13 +35,15 @@ class Arduino:
                 nieuw.append(Arduino.arduinos[Arduino.ardcount])
                 Arduino.ardcount+=1
 
-
     def __init__(self, nummer, poort):
         self.nummer = nummer
         self.poort = poort
         self.serial = serial.Serial(port=poort, baudrate=19200)
         print(self.nummer)
         print(self.poort)
+
+    def commandosturen(self, commando):
+        pass
 
 
 
