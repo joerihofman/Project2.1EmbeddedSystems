@@ -88,6 +88,7 @@ def leesnieuweport():
                     del listlightmaand[:]
                 #listtemp.append(tempvalue)
                 timer = 0
+
                 #print(listlight)
                 #print(listtemp)
                 #if lightvalue < 500:

@@ -26,11 +26,14 @@ class Arduino:
             port = portsdict[key]
             strip = port[0:4]
             print("strip: ", strip)
-            if strip in Arduino.arduinos:
-                print("niks gevonden")
-                pass
-            else:
-                print("iets gevonden")
+            for k,v in Arduino.arduinos:
+                if v == (strip):
+                    print("niks gevonden")
+                    pass
+                else:
+                    nieuw.append(strip)
+                    print("iets gevonden")
+            for v in nieuw:
                 Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
                 nieuw.append(Arduino.arduinos[Arduino.ardcount])
                 Arduino.ardcount+=1
