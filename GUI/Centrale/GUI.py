@@ -174,7 +174,7 @@ def main():
 
         def __init__(self,welkearduino):
             welkearduino = welkearduino
-            a = ( 1 + int(python.Arduino.get(welkearduino).nummer))
+            a = ( 1 + int(python.Arduino.get(self.welkearduino).nummer))
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(nieuweframe, text='Bord %d' % a)
             notebook.pack()
