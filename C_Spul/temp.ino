@@ -10,11 +10,11 @@ int var;
 
 void setup() {
   Serial.begin(19200); //baud rate.
-  pinMode(led_groen,OUTPUT);
+  pinMode(led_groen,OUTPUT);        //stelt de lampjes in.
   pinMode(led_geel,OUTPUT);
   pinMode(led_rood,OUTPUT);
-  digitalWrite(led_groen,HIGH);
-  }
+  digitalWrite(led_groen,HIGH);     //we starten met een opgerold scherm
+  }                                 //hier laten we groen voor branden
 
 void loop() {
   if(Serial.available()){
@@ -25,16 +25,16 @@ void loop() {
 
 void kees(int var) {
   switch(var) {
-  case '1': light();  break;          //Aantal lux opvragen
-  case '2': temp();  break;           //Temp opvragen
-  case '3': up();  break;             //De functie om scherm op te laten rollen
-  case '4': down();  break;           //De functie om scherm naar beneden te laten rollen
-  case '5': statusin(); break;        //Geeft de status van het scherm. Of die naar beneden of boven is
-  case '6': ping(); break;            //Dit kijkt of het bordje kan communiceren. (soort whoami)
-  case '7': uitrol(5); break;         //Dit zet de uitrol op 50cm
-  case '8': uitrol(10); break;        //Dit zet de uitrol op 100cm
-  case '9': uitrol(15); break;        //Dit zet de uitrol op 150cm
-  case '0': statusuitrol(); break;    //Dit geeft aan op hoeveel cm de scherm is uitgerold
+  case '1': light();        break;  //Aantal lux opvragen
+  case '2': temp();         break;  //Temp opvragen
+  case '3': up();           break;  //De functie om scherm op te laten rollen
+  case '4': down();         break;  //De functie om scherm naar beneden te laten rollen
+  case '5': statusin();     break;  //Geeft de status van het scherm. Of die naar beneden of boven is
+  case '6': ping();         break;  //Dit kijkt of het bordje kan communiceren. (soort whoami)
+  case '7': uitrol(5);      break;  //Dit zet de uitrol op 50cm
+  case '8': uitrol(10);     break;  //Dit zet de uitrol op 100cm
+  case '9': uitrol(15);     break;  //Dit zet de uitrol op 150cm
+  case '0': statusuitrol(); break;  //Dit geeft aan op hoeveel cm de scherm is uitgerold
   }
 }
 
