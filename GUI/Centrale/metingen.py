@@ -29,7 +29,6 @@ def leesnieuweport():
             return(val)
 
     timer = 0
-    #test
     #lijstjes voor de licht
     listlight = collections.deque(maxlen=60)
     listlightuur = collections.deque(maxlen=24)
@@ -42,6 +41,7 @@ def leesnieuweport():
     listtempdag = collections.deque(maxlen=7)
     listtempweek = collections.deque(maxlen=4)
     listtempmaand = collections.deque(maxlen=12)
+
     def whileloop():
         while True:
             global timer
