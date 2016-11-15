@@ -48,7 +48,7 @@ def stuurcomando(poort, commando):
             global timer
             time.sleep(1)
             timer += 1
-            if timer% 2 == 0: #TODO verander dit naar 60 om elke 60 seconden waarden in een lijst te zetten.
+            if timer% 60 == 0:
                 lightvalue = arduino(1)
                 tempvalue = arduino(2)
                 listtemp.append(tempvalue)

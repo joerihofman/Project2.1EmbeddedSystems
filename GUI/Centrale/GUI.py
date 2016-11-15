@@ -36,7 +36,7 @@ def test():
 
 def grafiekuur():
     plt.figure(1)
-    plt.suptitle("Temperatuur/licht per minuut over een uur")
+    plt.suptitle("Temperatuur/licht per minuut van het afgelopen uur.")
     plt.subplot(211)
     plt.plot(metingen.listtemp, 'r-')
     plt.xlabel("Minuut")
@@ -44,7 +44,7 @@ def grafiekuur():
     plt.ylabel("Temperatuur")
     plt.grid(True)
     plt.subplot(212)
-    #plt.plot(metingen.listlight, 'r-')
+    plt.plot(metingen.listlight, 'r-')
     plt.xlabel("Minuut")
     plt.xlim([0, 60])
     plt.ylabel("Licht")
@@ -53,7 +53,7 @@ def grafiekuur():
 
 def grafiekdag():
     plt.figure(1)
-    plt.suptitle("Temperatuur/licht per uur over een dag")
+    plt.suptitle("Temperatuur/licht per uur van de afgelopen 24 uur")
     plt.subplot(211)
     plt.plot(metingen.listtempuur, 'r-')
     plt.xlabel("Uur")
@@ -70,7 +70,7 @@ def grafiekdag():
 
 def grafiekweek():
     plt.figure(1)
-    plt.suptitle("Temperatuur/licht per dag over een week")
+    plt.suptitle("Temperatuur/licht per dag van de afgelopen week")
     plt.subplot(211)
     plt.plot(metingen.listtempdag, 'r-')
     plt.xlabel("Dag")
@@ -87,7 +87,7 @@ def grafiekweek():
 
 def grafiekmaand():
     plt.figure(1)
-    plt.suptitle("Temperatuur/licht per week over een maand")
+    plt.suptitle("Temperatuur/licht per week van de afgelopen 4 weken")
     plt.subplot(211)
     plt.plot(metingen.listtempweek, 'r-')
     plt.xlabel("Week")
@@ -104,7 +104,7 @@ def grafiekmaand():
 
 def grafiekjaar():
     plt.figure(1)
-    plt.suptitle("Temperatuur/licht per maand over een jaar")
+    plt.suptitle("Temperatuur/licht per maand van de afgelopen 12 maanden.")
     plt.subplot(211)
     plt.plot(metingen.listtempmaand, 'r-')
     plt.xlabel("Maand")
@@ -227,7 +227,8 @@ def main():
             self.bordwhitespace1.grid(row=4,column=1)
             self.bordgrafieklabel= ttk.Label(self.nieuweframe, text ='Grafiek')
             self.bordgrafieklabel.grid(row=5,column=1)
-            #TODO: laat knoppen grafieken openen
+            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command = statusopvragen)
+            self.statusknop.grid(row=3, column = 1)
             self.uurknop= ttk.Button(self.nieuweframe,text='Uur', command = grafiekuur)
             self.uurknop.grid(row=6,column=0)
             self.dagknop= ttk.Button(self.nieuweframe,text='Dag', command = grafiekdag)
@@ -277,8 +278,12 @@ def main():
     maxrol= 150
     maxtemp= 25
 
+    """""
     def setmaxtemp(waarde):
         main.maxtemp = waarde
+        if(metingen.tempvalue >= waarde):
+            metingen.arduino(4)
+    """
 
     root.geometry("600x450+300+300")
     notebook = ttk.Notebook(root)
