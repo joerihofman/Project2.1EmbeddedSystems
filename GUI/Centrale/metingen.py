@@ -3,14 +3,16 @@ import time
 import collections
 
 def leesnieuweport():
-#    arduinoaansluiten.checkport().ser.isOpen()
+    arduinoaansluiten.checkport().uer.write(bytes(b'%d') % var)
+
+
+raw = arduinoaansluiten.checkport().ser.read(size=2)
+if raw:
+    #    arduinoaansluiten.checkport().ser.isOpen()
     time.sleep(2)
     def arduino(var):
         #light functie.
         if var == 1:
-            arduinoaansluiten.checkport().uer.write(bytes(b'%d') % var)
-            raw = arduinoaansluiten.checkport().ser.read(size=2)
-            if raw:
                 high,low = raw
                 val = high * 256 + low
                 val = 1023 - val
@@ -22,6 +24,7 @@ def leesnieuweport():
             s = int.from_bytes(arduinoaansluiten.checkport().ser.read(size=1), byteorder='big')
             val = round((float((s*5)/1024.0)-0.5)*100,2) #berekening voor de temp value
             return(val)
+        #overige functies
         else:
             arduinoaansluiten.checkport().ser.write(bytes(b'%d') % var)
             time.sleep(.1)
