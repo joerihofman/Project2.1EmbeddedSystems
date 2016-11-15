@@ -1,9 +1,9 @@
-#from GUI.Arduino import arduinoaansluiten
+from GUI.Arduino import arduinoaansluiten
 import serial
 import time
 import collections
 
-def stuurcommando(poort, commando):
+def stuurcomando(poort, commando):
     print("poort:", poort, " commando:", commando)
 #    def arduino(var):
         #light functie.
