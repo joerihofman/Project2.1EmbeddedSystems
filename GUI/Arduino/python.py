@@ -1,5 +1,6 @@
 import serial
 import serial.tools.list_ports
+from GUI.Centrale import metingen
 
 class Arduino:
     arduinos = {}
@@ -8,32 +9,51 @@ class Arduino:
     @classmethod
     def get(cls, nr):
         if cls.arduinos[nr]:
-            return cls.arduinos[nr]
+            return cls.arduinos.get(nr)
         else:
             return None
 
     @classmethod
     def scan(cls):
+        print(Arduino.arduinos)
         portsdict = {}
         print("portsdict: ", portsdict)
         nieuw = []
         print("nieuw: ", nieuw)
         portlist = list(serial.tools.list_ports.comports())
+        print("portlist: ",portlist)
         for p in portlist:
             portsdict[portlist.index(p)] = str(p)
             print("portsdict", portsdict)
-            for k,v in portsdict.items():
-                if v in Arduino.arduinos:
-                    print("niks gevonden")
-                    pass
-                else:
-                    print("iets gevonden")
-                    nieuw.append(v)
-            for i in nieuw:
-                strip = i[0:4]
-                Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
-                Arduino.ardcount+=1
-            print("nieuw: ",nieuw)
+        for k,v in portsdict.items():
+            print("k, v:",k,",",v)
+            port = portsdict[k]
+            portstrip = port[0:4]
+            print("strp",str(portstrip))
+            print("arduino items: ",Arduino.arduinos.items())
+            if portstrip == Arduino.arduinos.items():
+                print("niks gevonden")
+                pass
+            else:
+                print("iets gevonden")
+                nieuw.append(str(portstrip))
+                print("NIEUW IN k,v", nieuw)
+#            a = nieuw[0]
+#            print(a)
+#            print(type(a))
+        for i in nieuw:
+            a = nieuw.index(i)
+            print("a", a)
+#                print("b", b)
+#                for key,val in portsdict.items():
+#                    portstr = portsdict[key]
+#            x = 0
+##                Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, x)
+            Arduino(Arduino.ardcount, i)
+            Arduino.ardcount+=1
+        print("nieuw: ",nieuw)
+        nieuw.clear()
+        print("arduino's: ",Arduino.arduinos)
         """
         for p in portlist:
             portsdict[portlist.index(p)] = str(p)
@@ -57,17 +77,18 @@ class Arduino:
                     nieuw.append(Arduino.arduinos[Arduino.ardcount])
                     Arduino.ardcount+=1
         """
-        print("arduino's: ",Arduino.arduinos)
 
     def __init__(self, nummer, poort):
         self.nummer = nummer
         self.poort = poort
-#        self.serial = serial.Serial(port=poort, baudrate=19200)
+        self.serial = serial.Serial(port=poort, baudrate=19200)
         print(self.nummer)
         print(self.poort)
+        Arduino.arduinos[nummer] = (poort)
 
     def commandosturen(self, commando):
-        pass
+        metingen.stuurcomando(self.poort, commando)
+
 
 
 

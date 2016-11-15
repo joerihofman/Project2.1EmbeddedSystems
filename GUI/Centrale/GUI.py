@@ -167,14 +167,20 @@ def main():
 #        for i in range(len(python.Arduino.arduinos)):
 #            welkearduino = python.Arduino.arduinos[i]
         for i in python.Arduino.arduinos:
-            Arduinotab(python.Arduino.get(i).nummer)
+            Arduinotab(i)
+#            Arduinotab(python.Arduino.get(i).nummer)
 
+    def stuurcommando(welke, commando):
+        python.Arduino.get(welke).commandosturen(3)
 
     class Arduinotab:
 
         def __init__(self,welkearduino):
             self.welkearduino = welkearduino
-            self.a = ( 1 + int(python.Arduino.get(self.welkearduino).nummer))
+            self.comport = python.Arduino.get(welkearduino)
+            print(self.comport)
+#            self.a = ( 1 + int(python.Arduino.get(self.welkearduino).nummer))
+            self.a = (1 + welkearduino)
             self.nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(self.nieuweframe, text='Bord %d' % self.a)
             notebook.pack()
@@ -215,7 +221,7 @@ def main():
             self.bordsep6 = ttk.Separator(self.nieuweframe, orient="horizontal")
             self.bordsep6.grid(row=9, column=2,sticky='ew')
             #TODO: laat knoppen het bord in- en uitrollen
-            self.inrolknop = ttk.Button(self.nieuweframe, text='Inrollen')
+            self.inrolknop = ttk.Button(self.nieuweframe, text='Inrollen', command = lambda: stuurcommando(self.welkearduino, 3))
             self.inrolknop.grid(row=10,column=0)
             self.uitrolknop = ttk.Button(self.nieuweframe,text='Uitrollen')
             self.uitrolknop.grid(row=10,column=2)
@@ -231,7 +237,7 @@ def main():
             self.bordwhitespace3.grid(row=13,column=1)
             self.sluitknop = ttk.Button(self.nieuweframe,text='Sluit tabblad',command=self.nieuweframe.destroy)
             self.sluitknop.grid(row=14,column=2)
-            self.welkearduinoisdit = ttk.Label(self.nieuweframe, text="ard:{} ".format(welkearduino))
+            self.welkearduinoisdit = ttk.Label(self.nieuweframe, text="ard:{} ".format(self.comport))
             self.welkearduinoisdit.grid(row=16, column=2)
 
             #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten

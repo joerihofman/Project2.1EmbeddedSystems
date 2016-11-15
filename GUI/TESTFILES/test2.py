@@ -1,14 +1,21 @@
-from subprocess import Popen, PIPE
-
-# call subprocess
-# pass the serial object to subprocess
-# read out serial port
-
-
-# HOW TO PASS SERIAL OBJECT HERE to stdin
-p1 = Popen(['python', './ReadCOM.py', "COM1", "9600"], stdin=PIPE, stdout=PIPE, stderr=PIPE) # read COM1 permanently
-p2 = Popen(['python', './ReadCOM.py', "COM2", "9600"], stdin=PIPE, stdout=PIPE, stderr=PIPE) # read COM2 permanently
-
-for i in range(10):
-    print("received from COM1: %s" % p1.stdout.readline())# print output from ReadCOM.py for COM1
-    print("received from COM2: %s" % p2.stdout.readline())# print output from ReadCOM.py for COM2
+        for p in portlist:
+            portsdict[portlist.index(p)] = str(p)
+            print("portsdict", portsdict)
+        for key,value in portsdict.items():
+            port = portsdict[key]
+#            print("port", port)
+            strip = port[0:4]
+            print("strip: ", strip)
+#            values = [v for k,v in Arduino.arduinos.items() if value in v]
+            for k,v in portsdict.items():
+#                for ka, va in Arduino.arduinos.items():
+                if v in Arduino.arduinos:
+                    print("niks gevonden")
+                    pass
+                else:
+                    nieuw.append(strip)
+                    print("iets gevonden")
+                for i in nieuw:
+                    Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
+                    nieuw.append(Arduino.arduinos[Arduino.ardcount])
+                    Arduino.ardcount+=1
