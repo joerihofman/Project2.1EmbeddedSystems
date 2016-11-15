@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 from GUI.Arduino import python
 from GUI.Centrale import metingen
+from GUI.Centrale import nieuwbordje
 
 
 class GUI(Frame):
@@ -124,7 +125,6 @@ def main():
 #        nieuwbordjetab()
 #        metingen.leesnieuweport()
 
-"""
     def nieuwbordjetab():
         arduino = python.Arduino.scan()
 #        for i in range(len(python.Arduino.arduinos)):
@@ -195,7 +195,6 @@ def main():
             def instellingvensterenknop():
                 instellingenvenster(a)
                 instellingenbordknop.state(["disabled"])
-"""
 
 
     root = Tk()
