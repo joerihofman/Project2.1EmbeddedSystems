@@ -1,5 +1,6 @@
 import serial
 import serial.tools.list_ports
+import time
 from GUI.Centrale import metingen
 
 class Arduino:
@@ -42,56 +43,38 @@ class Arduino:
 #            print(a)
 #            print(type(a))
         for i in nieuw:
+            print(i)
 #            a = nieuw.index(i)
 #            print("a", a)
 #                print("b", b)
 #                for key,val in portsdict.items():
 #                    portstr = portsdict[key]
 #            x = 0
-           Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, port)
+            Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, i)
 #            Arduino(Arduino.ardcount, port)
-           Arduino.ardcount+=1
+            Arduino.ardcount+=1
         print("nieuw: ",nieuw)
         nieuw.clear()
         print("arduino's: ",Arduino.arduinos)
-        """
-        for p in portlist:
-            portsdict[portlist.index(p)] = str(p)
-            print("portsdict", portsdict)
-        for key,value in portsdict.items():
-            port = portsdict[key]
-#            print("port", port)
-            strip = port[0:4]
-            print("strip: ", strip)
-#            values = [v for k,v in Arduino.arduinos.items() if value in v]
-            for k,v in portsdict.items():
-#                for ka, va in Arduino.arduinos.items():
-                if v in Arduino.arduinos:
-                    print("niks gevonden")
-                    pass
-                else:
-                    nieuw.append(strip)
-                    print("iets gevonden")
-                for i in nieuw:
-                    Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
-                    nieuw.append(Arduino.arduinos[Arduino.ardcount])
-                    Arduino.ardcount+=1
-        """
 
     def __init__(self, nummer, poort):
         self.nummer = nummer
         self.poort = poort
+        self.serials = serial.Serial(port=self.poort[0:4], baudrate=19200)
+        self.serials.isOpen()
         print(self.nummer)
         print(self.poort)
+        print(self.serials)
 #        Arduino.arduinos[nummer] = (poort)
 
     def commandosturen(self, commando):
-        metingen.stuurcomando(Arduino.arduinos[self.nummer], commando)
+        metingen.stuurcomando(Arduino.arduinos.get(self.nummer), commando)
 
     def openserial(self):
-        self.serial = serial.Serial(port=self.poort[0:4], baudrate=19200)
-        self.serial.isOpen()
-
+        print("het is gelukt denk ik",self.serials, self.nummer)
+#        self.serial = serial.Serial(port=self.poort[0:4], baudrate=19200)
+#        self.serial.open()
+#        time.sleep(2)
 
 
 
@@ -139,3 +122,28 @@ def poort():
 
 #if __name__ == '__main__':
 #    main()
+
+
+"""
+for p in portlist:
+    portsdict[portlist.index(p)] = str(p)
+    print("portsdict", portsdict)
+for key,value in portsdict.items():
+    port = portsdict[key]
+#            print("port", port)
+    strip = port[0:4]
+    print("strip: ", strip)
+#            values = [v for k,v in Arduino.arduinos.items() if value in v]
+    for k,v in portsdict.items():
+#                for ka, va in Arduino.arduinos.items():
+        if v in Arduino.arduinos:
+            print("niks gevonden")
+            pass
+        else:
+            nieuw.append(strip)
+            print("iets gevonden")
+        for i in nieuw:
+            Arduino.arduinos[Arduino.ardcount] = Arduino(Arduino.ardcount, strip)
+            nieuw.append(Arduino.arduinos[Arduino.ardcount])
+            Arduino.ardcount+=1
+"""

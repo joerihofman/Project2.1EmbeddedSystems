@@ -3,7 +3,17 @@ from tkinter import messagebox
 from tkinter import ttk
 
 
+"""
+class Singleton(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
 
+class Logger(metaclass=Singleton):
+    pass
+"""
 import matplotlib.pyplot as plt
 
 from GUI.Arduino import python
@@ -198,6 +208,9 @@ def main():
     def stuurcommando(welke, commando):
         python.Arduino.get(welke).commandosturen(commando)
 
+    def comportopzetten(welke):
+        python.Arduino.get(welke).openserial()
+
     class Arduinotab:
 
         def __init__(self,welkearduino):
@@ -206,7 +219,7 @@ def main():
             print("arduinotab_printcomport: ",self.comport)
 #            self.a = ( 1 + int(python.Arduino.get(self.welkearduino).nummer))
             self.a = (1 + welkearduino)
-            python.Arduino.get(self.welkearduino).openserial()
+#            python.Arduino.get(self.welkearduino).openserial()
             self.nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(self.nieuweframe, text='Bord %d' % self.a)
             notebook.pack()
@@ -227,8 +240,8 @@ def main():
             self.bordwhitespace1.grid(row=4,column=1)
             self.bordgrafieklabel= ttk.Label(self.nieuweframe, text ='Grafiek')
             self.bordgrafieklabel.grid(row=5,column=1)
-            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command = statusopvragen)
-            self.statusknop.grid(row=3, column = 1)
+#            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command = statusopvragen)
+#            self.statusknop.grid(row=3, column = 1)
             self.uurknop= ttk.Button(self.nieuweframe,text='Uur', command = grafiekuur)
             self.uurknop.grid(row=6,column=0)
             self.dagknop= ttk.Button(self.nieuweframe,text='Dag', command = grafiekdag)
@@ -250,6 +263,8 @@ def main():
             #TODO: laat knoppen het bord in- en uitrollen
             self.inrolknop = ttk.Button(self.nieuweframe, text='Inrollen', command = lambda: stuurcommando(self.welkearduino, 4))
             self.inrolknop.grid(row=10,column=0)
+            self.knopverbind = ttk.Button(self.nieuweframe, text="comport opzetten", command = lambda: comportopzetten(self.welkearduino))
+            self.knopverbind.grid(row = 10,column=1)
             self.uitrolknop = ttk.Button(self.nieuweframe,text='Uitrollen', command = lambda: stuurcommando(self.welkearduino, 3))
             self.uitrolknop.grid(row=10,column=2)
             self.bordsep7 = ttk.Separator(self.nieuweframe, orient="horizontal")
@@ -327,8 +342,8 @@ def main():
     leegmakenknop = ttk.Button(centraalframe,text='Leegmaken',command=lambda:maxitempbox.set(''))
     leegmakenknop.grid(row = 11, column = 0)
     #TODO: accepteren
-    accepterenknop = ttk.Button(centraalframe,text='Accepteren',command = setmaxtemp(maxitempbox.get()))
-    accepterenknop.grid(row=11,column=2)
+#    accepterenknop = ttk.Button(centraalframe,text='Accepteren',command = setmaxtemp(maxitempbox.get()))
+#    accepterenknop.grid(row=11,column=2)
     whitespace5 = ttk.Label(centraalframe)
     whitespace5.grid(row=12,column=1)
     sep7 = ttk.Separator(centraalframe, orient="horizontal")
