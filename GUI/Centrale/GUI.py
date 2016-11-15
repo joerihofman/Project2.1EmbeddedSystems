@@ -90,7 +90,7 @@ def grafiekweek():
     plt.subplot(212)
     plt.plot(metingen.listlightdag, 'r-')
     plt.xlabel("Dag")
-    plt.xlabel([0, 7])
+    plt.xlim([0, 7])
     plt.ylabel("Licht")
     plt.grid(True)
     plt.show()
@@ -209,6 +209,13 @@ def main():
     def stuurcommando(welke, commando):
         return python.Arduino.get(welke).commandosturen(commando)
 
+    def whilelooparduino(welke):
+        python.Arduino.get(welke).whileloopmeting()
+
+    def stuurnaaralle(commando):
+        for k,v in python.Arduino.arduinos:
+            python.Arduino.arduinos[k].commandosturen(commando)
+
     def comportopzetten(welke):
         python.Arduino.get(welke).openserial()
 
@@ -283,8 +290,6 @@ def main():
             #TODO: laat knoppen het bord in- en uitrollen
             self.inrolknop = ttk.Button(self.nieuweframe, text='Inrollen', command = lambda: stuurcommando(self.welkearduino, 4))
             self.inrolknop.grid(row=10,column=0)
-            self.knopverbind = ttk.Button(self.nieuweframe, text="comport opzetten", command = lambda: comportopzetten(self.welkearduino))
-            self.knopverbind.grid(row = 10,column=1)
             self.uitrolknop = ttk.Button(self.nieuweframe,text='Uitrollen', command = lambda: stuurcommando(self.welkearduino, 3))
             self.uitrolknop.grid(row=10,column=2)
             self.bordsep7 = ttk.Separator(self.nieuweframe, orient="horizontal")
@@ -301,6 +306,7 @@ def main():
             self.sluitknop.grid(row=14,column=2)
             self.welkearduinoisdit = ttk.Label(self.nieuweframe, text="ard:{} ".format(self.comport))
             self.welkearduinoisdit.grid(row=16, column=2)
+#            whilelooparduino(welkearduino)
 
             #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten
             def instellingvensterenknop(self):
@@ -379,7 +385,7 @@ def main():
     whitespace6 = ttk.Label(centraalframe)
     whitespace6.grid(row=14,column=1)
     #TODO: Alle luiken open
-    openknop = ttk.Button(centraalframe,text='Alle luiken open')
+    openknop = ttk.Button(centraalframe,text='Alle luiken open', command=lambda: stuurnaaralle(3))
     openknop.grid(row=15, column=0)
     #TODO: Alle luiken sluiten
     sluitknop = ttk.Button(centraalframe,text='Alle luiken sluiten')

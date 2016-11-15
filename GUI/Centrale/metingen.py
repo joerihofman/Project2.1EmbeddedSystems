@@ -1,9 +1,9 @@
-from GUI.Arduino import arduinoaansluiten
+#from GUI.Arduino import arduinoaansluiten
 import serial
 import time
 import collections
 
-def stuurcomando(poort, commando):
+def stuurcommando(poort, commando):
     print("poort:", poort, " commando:", commando)
 #    def arduino(var):
         #light functie.
@@ -45,21 +45,23 @@ listtempdag = collections.deque(maxlen=7)
 listtempweek = collections.deque(maxlen=4)
 listtempmaand = collections.deque(maxlen=12)
 
-def whileloop():
-    global timer
-    time.sleep(1)
-    timer += 1
-    print('test')
-    if timer% 60 == 0:
-            lightvalue = stuurcomando(COMPOORT,1)
-            tempvalue = stuurcomando(COMPOORT,2)
+def whileloop(poort):
+    while True:
+        global timer
+        time.sleep(1)
+        timer += 1
+        if timer% 2 == 0:
+            lightvalue = stuurcommando(poort ,1)
+            print("lightval: ",lightvalue)
+            tempvalue = stuurcommando(poort ,2)
+            print("tempval: ",tempvalue)
             listtemp.append(tempvalue)
             listlight.append(lightvalue)
             #If statements voor de temperatuur
             if (len(listtemp) == 60):
                 x = sum(listtemp) / 60
                 listtempuur.append(x)
-           if (len(listtempuur) == 24):
+            if (len(listtempuur) == 24):
                 y = sum(listtempuur) / 24
                 listtempdag.append(y)
             if (len(listtempdag) == 7):
@@ -70,7 +72,7 @@ def whileloop():
                 listtempmaand.append(z)
             if (len(listtempmaand) == 12):
                 del listtempmaand[:]
-            #If statements voor de licht
+            #If statements voor licht
             if (len(listlight) == 60):
                 a = sum(listlight) / 60
                 listlightuur.append(a)
@@ -87,7 +89,33 @@ def whileloop():
                 del listlightmaand[:]
             #listtemp.append(tempvalue)
             timer = 0
-            #print(listlight)
-            #print(listtemp)
-            #if lightvalue < 500:
-            #    arduino(4)
+            print("listtemp: ",listtemp)
+            print("listlight: ",listlight)
+
+                #print(listlight)
+                #print(listtemp)
+                #if lightvalue < 500:
+                #    arduino(4)
+#else:
+#    pass
+
+# while True:
+#     try:
+#         ser = serial.Serial('COM3',19200)
+#     except:
+#         print("geen com gevonden")
+#
+# def read_arduino(input):
+#     ser.write(bytes(b'%d')%input)
+#     time.sleep(.1)
+#     print(ser.read())
+#
+# input2 = int(input("Kies commando: "))
+#
+# read_arduino(input2)
+
+#def num(t):
+#     try:
+#         return int(t)
+#     except ValueError:
+#           pass
