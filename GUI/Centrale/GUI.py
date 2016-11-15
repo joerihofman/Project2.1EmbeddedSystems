@@ -126,39 +126,43 @@ def main():
     instellingenvenster_dict={}
 
     #maakt een instellingenvenster aan voor een bordje
-    def instellingenvenster(nummer):
-        instellingenvenstertje = Tk()
-        instellingenvenster_dict.update({nummer : instellingenvenstertje})
-        instellingenvenstertje.geometry("300x200+300+300")
-        ivensterlabel = ttk.Label(instellingenvenstertje, text='Instellingen bord %d' % nummer)
-        ivensterlabel.grid(row=0,column=1)
-        isep1 = ttk.Separator(instellingenvenstertje)
-        isep1.grid(row=1,column=0,sticky='ew')
-        isep2 = ttk.Separator(instellingenvenstertje)
-        isep2.grid(row=1,column=1,sticky='ew')
-        isep3 = ttk.Separator(instellingenvenstertje)
-        isep3.grid(row=1,column=2,stick='ew')
-        iwhitespace1 = ttk.Label(instellingenvenstertje)
-        iwhitespace1.grid(row=2,column=1)
-        iuitrollengte = ttk.Label(instellingenvenstertje, text='Uitrollengte: ')
-        iuitrollengte.grid(row=3,column=1)
-        #TODO: laat knoppen de uitrollengte van het bord instellen
-        i50cm = ttk.Button(instellingenvenstertje, text='50 cm')
-        i50cm.grid(row=4,column=0)
-        i100cm = ttk.Button(instellingenvenstertje, text='100 cm')
-        i100cm.grid(row=4,column=1)
-        ihelemaal= ttk.Button(instellingenvenstertje, text='Helemaal')
-        ihelemaal.grid(row=4,column=2)
+    class instellingenvenster:
 
-        def isluit():
+        def __init__(self,welkearduino):
+            self.welkearduino = welkearduino
+            self.nummer = (1 + int(python.Arduino.get(self.welkearduino).nummer))
+            self.instellingenvenstertje = Tk()
+            self.instellingenvenster_dict.update({self.nummer : self.instellingenvenstertje})
+            self.instellingenvenstertje.geometry("300x200+300+300")
+            self.ivensterlabel = ttk.Label(self.instellingenvenstertje, text='Instellingen bord %d' % self.nummer)
+            self.ivensterlabel.grid(row=0,column=1)
+            self.isep1 = ttk.Separator(self.instellingenvenstertje)
+            self.isep1.grid(row=1,column=0,sticky='ew')
+            self.isep2 = ttk.Separator(self.instellingenvenstertje)
+            self.isep2.grid(row=1,column=1,sticky='ew')
+            self.isep3 = ttk.Separator(self.instellingenvenstertje)
+            self.isep3.grid(row=1,column=2,stick='ew')
+            self.iwhitespace1 = ttk.Label(self.instellingenvenstertje)
+            self.iwhitespace1.grid(row=2,column=1)
+            self.iuitrollengte = ttk.Label(self.instellingenvenstertje, text='Uitrollengte: ')
+            self.iuitrollengte.grid(row=3,column=1)
+            #TODO: laat knoppen de uitrollengte van het bord instellen
+            self.i50cm = ttk.Button(self.instellingenvenstertje, text='50 cm')
+            self.i50cm.grid(row=4,column=0)
+            self.i100cm = ttk.Button(self.instellingenvenstertje, text='100 cm')
+            self.i100cm.grid(row=4,column=1)
+            self.ihelemaal= ttk.Button(self.instellingenvenstertje, text='Helemaal')
+            self.ihelemaal.grid(row=4,column=2)
+            self.instellingenvenstertje.protocol("WM_DELETE_WINDOW", isluit)
 
-            del instellingenvenster_dict[nummer]
-            instellingenvenstertje.destroy()
-        instellingenvenstertje.protocol("WM_DELETE_WINDOW", isluit)
+        def isluit(self):
+
+            del instellingenvenster_dict[self.nummer]
+            self.instellingenvenstertje.destroy()
+
     #maakt een tabblad aan voor een bordje
 
 #    def nieuwebordje():
-        #todo: laat maar een tabblad per bord open kunnen laten gaan
 #        nieuwbordjetab()
 #        metingen.leesnieuweport()
 
@@ -225,7 +229,7 @@ def main():
             self.bordsep8.grid(row=11, column=1, sticky='ew')
             self.bordsep9 = ttk.Separator(self.nieuweframe, orient="horizontal")
             self.bordsep9.grid(row=11, column=2, sticky='ew')
-            self.instellingenbordknop = ttk.Button(self.nieuweframe,text='Instellingen Bordje',command=lambda: instellingvensterenknop())
+            self.instellingenbordknop = ttk.Button(self.nieuweframe,text='Instellingen Bordje',command=lambda: instellingvensterenknop(self))
             self.instellingenbordknop.grid(row=12,column=1)
             self.bordwhitespace3 = ttk.Label(self.nieuweframe)
             self.bordwhitespace3.grid(row=13,column=1)
@@ -235,9 +239,9 @@ def main():
             self.welkearduinoisdit.grid(row=16, column=2)
 
             #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten
-            def instellingvensterenknop():
-                instellingenvenster(a)
-                instellingenbordknop.state(["disabled"])
+            def instellingvensterenknop(self):
+                instellingenvenster(self.welkearduino)
+                self.instellingenbordknop.state(["disabled"])
 
 
     root = Tk()
