@@ -8,8 +8,8 @@ def stuurcomando(poort, commando):
 #    def arduino(var):
         #light functie.
     if commando == 1:
-        poort.serial.write(bytes(b'%d') % commando)
-        raw = poort.serial.read(size=2)
+        poort.write(bytes(b'%d') % commando)
+        raw = poort.read(size=2)
         if raw:
             high,low = raw
             val = high * 256 + low
@@ -17,17 +17,19 @@ def stuurcomando(poort, commando):
             return(val)
     #temperatuur functie.
     elif commando == 2:
-        poort.serial.write(bytes(b'%d') % commando)
+        poort.write(bytes(b'%d') % commando)
         time.sleep(.1)
-        s = int.from_bytes(poort.serial.read(size=1), byteorder='big')
+        s = int.from_bytes(poort.read(size=1), byteorder='big')
         val = round((float((s*5)/1024.0)-0.5)*100,2) #berekening voor de temp value
         return(val)
     else:
         print("test")
-        poort.serial.write(bytes(b'%d') % commando)
+        poort.write(bytes(b'%d') % commando)
+        print("test2jwzboi")
         time.sleep(.1)
-        val = int.from_bytes(poort.serial.read(),byteorder='big')
-        return(val)
+        val = int.from_bytes(poort.read(),byteorder='big')
+        print(val)
+#        return(val)
 
     timer = 0
     #lijstjes voor de licht

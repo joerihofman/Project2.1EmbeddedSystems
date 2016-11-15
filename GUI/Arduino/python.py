@@ -61,14 +61,14 @@ class Arduino:
         self.nummer = nummer
         self.poort = poort
         self.serials = serial.Serial(port=self.poort[0:4], baudrate=19200)
-        self.serials.isOpen()
+#        self.serials.isOpen()
         print(self.nummer)
         print(self.poort)
         print(self.serials)
 #        Arduino.arduinos[nummer] = (poort)
 
     def commandosturen(self, commando):
-        metingen.stuurcomando(Arduino.arduinos.get(self.nummer), commando)
+        metingen.stuurcomando(Arduino.arduinos[self.nummer].serials, commando)
 
     def openserial(self):
         print("het is gelukt denk ik",self.serials, self.nummer)
