@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 from GUI.Arduino import python
 from GUI.Centrale import metingen
-
+"""
 root = Tk()
 notebook = ttk.Notebook(root)
 notebook = ttk.Frame(notebook, width = 100, height = 200)
@@ -81,3 +81,4 @@ def nieuwbordjetab():
         def instellingvensterenknop():
             instellingenvenster(a)
             instellingenbordknop.state(["disabled"])
+"""

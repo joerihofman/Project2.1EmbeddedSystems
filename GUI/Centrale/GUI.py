@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 
+
+
 import matplotlib.pyplot as plt
 
 from GUI.Arduino import python
@@ -155,8 +157,14 @@ def main():
 #        for i in range(len(python.Arduino.arduinos)):
 #            welkearduino = python.Arduino.arduinos[i]
         for i in python.Arduino.arduinos:
-            welkearduino = python.Arduino.get(i).poort
-            a = i + 1
+            Arduinotab(python.Arduino.get(i).nummer)
+
+
+    class Arduinotab:
+
+        def __init__(self,welkearduino):
+            welkearduino = welkearduino
+            a = ( 1 + int(python.Arduino.get(welkearduino).nummer))
             nieuweframe = ttk.Frame(notebook, width=100, height=200)
             notebook.add(nieuweframe, text='Bord %d' % a)
             notebook.pack()
