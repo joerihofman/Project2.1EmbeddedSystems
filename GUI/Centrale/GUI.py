@@ -304,11 +304,8 @@ def main():
             self.bordwhitespace3.grid(row=13,column=1)
             self.sluitknop = ttk.Button(self.nieuweframe,text='Sluit tabblad',command=self.nieuweframe.destroy)
             self.sluitknop.grid(row=14,column=2)
-            self.welkearduinoisdit = ttk.Label(self.nieuweframe, text="ard:{} ".format(self.comport))
-            self.welkearduinoisdit.grid(row=16, column=2)
 #            whilelooparduino(welkearduino)
 
-            #TODO: als bordjes aangesloten zijn aan tabbladen knop weer aan kunnen zetten
             def instellingvensterenknop(self):
                 instellingenvenster(self.welkearduino,self)
                 self.instellingenbordknop.state(["disabled"])
@@ -400,7 +397,6 @@ def main():
     sep12.grid(row=17, column=2,sticky='ew')
     whitespace8 = ttk.Label(centraalframe)
     whitespace8.grid(row=18,column=1)
-    #TODO: Nieuw bordje aansluiten
     nieuwbordknop = ttk.Button(centraalframe,text = 'Nieuw bordje aansluiten',command=nieuwbordjetab)
     nieuwbordknop.grid(row=19,column=1)
     whitespace9 = ttk.Label(centraalframe)
