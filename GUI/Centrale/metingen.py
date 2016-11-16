@@ -3,7 +3,7 @@ import time
 import collections
 import random
 
-def stuurcomando(poort, commando):
+def stuurcommando(poort, commando):
     print("poort:", poort, " commando:", commando)
 #    def arduino(var):
         #light functie.
