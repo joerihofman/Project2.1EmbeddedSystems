@@ -351,7 +351,7 @@ def main():
     maxitemplabel.grid(row = 8, column = 0)
     maxirollabel = ttk.Label(centraalframe, text='Maximale uitrollengte(CM)')
     maxirollabel.grid(row = 8, column = 2)
-    maxitempbox = Entry(centraalframe)
+    maxitempbox = ttk.Combobox(centraalframe)
     maxitempbox.grid(row = 9, column =0)
     maxirolbox = OptionMenu(centraalframe, maxrol, 50, 100, 150)
     maxirolbox.grid(row = 9, column =2)
