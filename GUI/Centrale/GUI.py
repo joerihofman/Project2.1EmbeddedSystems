@@ -134,6 +134,7 @@ opvulling = 0
 
 def main():
     instellingenvenster_dict={}
+    statusvenster_dict={}
 
     #maakt een instellingenvenster aan voor een bordje
     class instellingenvenster:
@@ -244,23 +245,6 @@ def main():
             self.bordwhitespace1.grid(row=4,column=1)
             self.bordgrafieklabel= ttk.Label(self.nieuweframe, text ='Grafiek')
             self.bordgrafieklabel.grid(row=5,column=1)
-            def statusopvragen(self):
-                resultaat = stuurcommando(self.welkearduino, 5)
-                self.window = Tk()
-                self.window.wm_title("Status")
-                self.label = ttk.Label(self.window, text="")
-                self.label.grid(row=1, column=1)
-                if resultaat == 3:
-                    self.label = ttk.Label(self.window, text = "Rolluik is omhoog")
-                    self.label.grid(row=1,column=1)
-                elif resultaat == 4:
-                    self.label = ttk.Label(self.window, text = "Rolluik is omlaag")
-                    self.label.grid(row=1,column=1)
-                else:
-                    self.label = ttk.Label(self.window, text = "Geen status gevonden")
-                    self.label.grid(row=1,column=1)
-            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command =lambda: statusopvragen(self))
-            self.statusknop.grid(row=3, column = 1)
 #            self.statusknop= ttk.Button(self.nieuweframe, text='Status opvragen', command = statusopvragen)
 #            self.statusknop.grid(row=3, column = 1)
             self.uurknop= ttk.Button(self.nieuweframe,text='Uur', command = grafiekuur)
@@ -297,11 +281,43 @@ def main():
             self.bordwhitespace3.grid(row=13,column=1)
             self.sluitknop = ttk.Button(self.nieuweframe,text='Sluit tabblad',command=self.nieuweframe.destroy)
             self.sluitknop.grid(row=14,column=2)
+            self.statusknop = ttk.Button(self.nieuweframe, text='Status opvragen',command=lambda: statusopvragenknop(self))
+            self.statusknop.grid(row=3, column=1)
 #            whilelooparduino(welkearduino)
 
             def instellingvensterenknop(self):
                 instellingenvenster(self.welkearduino,self)
                 self.instellingenbordknop.state(["disabled"])
+
+            def statusopvragenknop(self):
+                statusopvragen(self)
+                self.statusknop.state(["disabled"])
+
+    class statusopvragen:
+        def __init__(self,Arduinotab):
+            resultaat = stuurcommando(Arduinotab.welkearduino, 5)
+            self.nummer = (1 + int(python.Arduino.get(Arduinotab.welkearduino).nummer))
+            self.window = Tk()
+            self.window.wm_title("Status")
+            statusvenster_dict.update({self.nummer: self.window})
+            self.label = ttk.Label(self.window, text="")
+            self.label.grid(row=1, column=1)
+            if resultaat == 3:
+                self.label = ttk.Label(self.window, text = "Rolluik is omhoog")
+                self.label.grid(row=1,column=1)
+            elif resultaat == 4:
+                self.label = ttk.Label(self.window, text = "Rolluik is omlaag")
+                self.label.grid(row=1,column=1)
+            else:
+                self.label = ttk.Label(self.window, text = "Geen status gevonden")
+                self.label.grid(row=1,column=1)
+
+            def sluitstatus(self):
+                del statusvenster_dict[self.nummer]
+                Arduinotab.statusknop.state(["!disabled"])
+                self.window.destroy()
+
+            self.window.protocol("WM_DELETE_WINDOW", lambda: sluitstatus(self))
 
 
 
@@ -404,6 +420,9 @@ def main():
             for k,v in instellingenvenster_dict.items():
 
                 v.destroy()
+            for x,y in statusvenster_dict.items():
+
+                y.destroy
             plt.close()
     root.protocol("WM_DELETE_WINDOW", vraag)
     root.mainloop()
