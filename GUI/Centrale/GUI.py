@@ -129,7 +129,7 @@ def grafiekjaar():
     plt.grid(True)
     plt.show()
 
-#TODO: opvulling weg halen
+
 opvulling = 0
 
 def main():
@@ -241,7 +241,6 @@ def main():
             self.bordsep3.grid(row=1, column=2, sticky='ew')
             self.borduitgeroldlabel1 = ttk.Label(self.nieuweframe, text ='Uitgerold:')
             self.borduitgeroldlabel1.grid(row=2,column=1)
-            #TODO: geef door of bord is uitgerold of niet
             #self.borduitgeroldlabel2 = ttk.Label(self.nieuweframe, text ='Ja/Nee')
             #self.borduitgeroldlabel2.grid(row=3,column=1)
             self.bordwhitespace1= ttk.Label(self.nieuweframe)
@@ -287,7 +286,6 @@ def main():
             self.bordsep5.grid(row=9, column=1,sticky='ew')
             self.bordsep6 = ttk.Separator(self.nieuweframe, orient="horizontal")
             self.bordsep6.grid(row=9, column=2,sticky='ew')
-            #TODO: laat knoppen het bord in- en uitrollen
             self.inrolknop = ttk.Button(self.nieuweframe, text='Inrollen', command = lambda: stuurcommando(self.welkearduino, 4))
             self.inrolknop.grid(row=10,column=0)
             self.uitrolknop = ttk.Button(self.nieuweframe,text='Uitrollen', command = lambda: stuurcommando(self.welkearduino, 3))
@@ -381,10 +379,8 @@ def main():
     sep9.grid(row=13, column=2, sticky='ew')
     whitespace6 = ttk.Label(centraalframe)
     whitespace6.grid(row=14,column=1)
-    #TODO: Alle luiken open
     openknop = ttk.Button(centraalframe,text='Alle luiken open', command=lambda: stuurnaaralle(3))
     openknop.grid(row=15, column=0)
-    #TODO: Alle luiken sluiten
     sluitknop = ttk.Button(centraalframe,text='Alle luiken sluiten')
     sluitknop.grid(row=15,column=2)
     whitespace7 = ttk.Label(centraalframe)
