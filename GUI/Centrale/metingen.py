@@ -30,7 +30,7 @@ def stuurcommando(poort, commando):
         val = int.from_bytes(poort.read(), byteorder='big')
         print(val)
         return val
-#aoeoa
+
 timer = 0
 #lijstjes voor de licht
 listlight = collections.deque(maxlen=60)

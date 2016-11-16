@@ -157,7 +157,6 @@ def main():
             self.iwhitespace1.grid(row=2,column=1)
             self.iuitrollengte = ttk.Label(self.instellingenvenstertje, text='Uitrollengte: ')
             self.iuitrollengte.grid(row=3,column=1)
-            #TODO: laat knoppen de uitrollengte van het bord instellen
 
             def set50cm(self):
                 stuurcommando(self.welkearduino, 7)
@@ -241,16 +240,12 @@ def main():
             self.bordsep3.grid(row=1, column=2, sticky='ew')
             self.borduitgeroldlabel1 = ttk.Label(self.nieuweframe, text ='Uitgerold:')
             self.borduitgeroldlabel1.grid(row=2,column=1)
-            #self.borduitgeroldlabel2 = ttk.Label(self.nieuweframe, text ='Ja/Nee')
-            #self.borduitgeroldlabel2.grid(row=3,column=1)
             self.bordwhitespace1= ttk.Label(self.nieuweframe)
             self.bordwhitespace1.grid(row=4,column=1)
             self.bordgrafieklabel= ttk.Label(self.nieuweframe, text ='Grafiek')
             self.bordgrafieklabel.grid(row=5,column=1)
             def statusopvragen(self):
-      #          stuurcommando(self.welkearduino, 5)
                 resultaat = stuurcommando(self.welkearduino, 5)
-                print(resultaat)
                 self.window = Tk()
                 self.window.wm_title("Status")
                 self.label = ttk.Label(self.window, text="")
@@ -379,8 +374,10 @@ def main():
     sep9.grid(row=13, column=2, sticky='ew')
     whitespace6 = ttk.Label(centraalframe)
     whitespace6.grid(row=14,column=1)
+
     openknop = ttk.Button(centraalframe,text='Alle luiken open', command=lambda: stuurnaaralle(3))
     openknop.grid(row=15, column=0)
+    #TODO: Alle luiken sluiten
     sluitknop = ttk.Button(centraalframe,text='Alle luiken sluiten')
     sluitknop.grid(row=15,column=2)
     whitespace7 = ttk.Label(centraalframe)
